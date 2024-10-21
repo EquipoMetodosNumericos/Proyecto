@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>METODOS NUMERICOS</title>
+    <script src="./js.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <br>
+    <br>
+    <section id="portada">
+        <div class="portada" align="center">
+            <div class="encabezado">
+                <img src="./fesa.png" alt="" class="logo">
+                <div class="texto-centro">
+                    <h1>UNAM</h1>
+                    <h1>FES ACATLAN</h1>
+                    <h2>Métodos Numéricos I</h2>
+                </div>            
+                <img src="metodos-numericos.jpg" alt="" class="logo">
+            </div>
+            <br>
+            <br>
+            <div align="left">
+                <h3>Integrantes:</h3>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div align="right">
+                <h3>Fecha: <span id="fecha"></span></h3>
+            </div>
+            <button id="siguiente" class="boton">SIGUIENTE</button>
+        </div>
+    </section>
+    <section id="introduccion">
+        <div class="introduccion" align="center">
+            <h1>INTRODUCCION</h1>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <button id="regresar" class="boton">REGRESAR</button>
+            <button id="siguiente-2" class="boton">SIGUIENTE</button>
+        </div>
+    </section>
+    <section id="menu-principal">
+        <div class="menu-principal" align="center">
+            <div align="center" class="menu-principal-2">
+                <h1>Menú Principal</h1>
+            </div>
+            <br>
+            <br>
+            <div align="left">
+                <p>Selecciona la unidad:</p>
+            </div>
+            <div align="left" class="opciones" class="radio">
+                <label for="u-2" class="radio">UNIDAD II. Solución Numérica de Ecuaciones de una sola variable</label>
+                <input type="radio" id="u-2" class="radio" name="rad">
+                <br>
+                <br>
+                <label for="u-3" class="radio">UNIDAD III. Solución de sistemas de ecuaciones lineales</label>
+                <input type="radio" id="u-3" class="radio" name="rad">
+                <br>
+                <br>
+                <label for="u-4" class="radio">UNIDAD IV. Factorización LU y sus aplicaciones</label>
+                <input type="radio" id="u-4" class="radio" name="rad">
+                <br>
+                <br>
+                <label for="u-5" class="radio">UNIDAD V. Cálculo de valores y vectores propios</label>
+                <input type="radio" id="u-5" class="radio" name="rad">
+            </div> 
+            <br>
+            <br>
+            <button id="regresar-2" class="boton">REGRESAR</button>
+            <button id="seleccionar" class="boton">SELECCIONAR</button>
+            <button id="salir" class="boton">SALIR</button>
+        </div>
+    </section>
+            <!--UNIDAD II-->
+
+    <div class="unidad-2">
+        <section id="unidad-2-introduccion">
+            <div class="introducciones" align="center">
+                <h2>SOLUCION NUMERICA DE ECUACIONES DE UNA SOLA VARIABLE</h2>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <button id="regresar-u-2-1" class="boton">REGRESAR</button>
+                <button id="siguiente-u-2-1" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="unidad-2-menu">
+            <div class="menu" align="center">
+                <h2>Menú</h2>
+                <h3>Solución Numérica de Ecuaciones de una sola variable</h3>
+                <div align="left">
+                    <br>
+                    <br>
+                    <label for="falsa-posicion" class="radio">FALSA POSICION</label>
+                    <input type="radio" id="falsa-posicion" name="enl">
+                    <br>
+                    <br>
+                    <label for="newton" class="radio">NEWTON</label>
+                    <input type="radio" id="newton" name="enl">
+                    <br>
+                    <br>
+                    <label for="secante" class="radio">SECANTE</label>
+                    <input type="radio" id="secante" name="enl">
+                </div>
+                <br>
+                <br>
+                <button id="regresar-u-2-2" class="boton">REGRESAR</button>
+                <button id="siguiente-u-2-2" class="boton">SELECCIONAR</button>
+            </div>
+        </section>
+        <section id="falsa-posicion-1">
+            <div class="metodos-1" align="center">
+                <h2>FALSA POSICIÓN</h2>
+                <div align="justify">
+                    <p>Explicación</p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-u-2-f-p" class="boton">REGRESAR</button>
+                <button id="siguiente-u-2-f-p" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="falsa-posicion-2">
+            <div class="metodos-2" align="center">
+                <h2>FALSA POSICIÓN</h2>
+                <p>EJEMPLO: Selecciona la ecuación y el intervalo para resolver con el método de Falsa Posición.</p>
+                <div class="intervalo">
+                    <p>Introduce el intervalo: \(x \in \) [</p>
+                    <label for="inter-1"></label>
+                    <input type="text" id="inter-1" class="inter">
+                    <p>,</p>
+                    <label for="inter-2"></label>
+                    <input type="text" id="inter-2" class="inter">
+                    <p>]</p>
+                </div>                
+                <div align="justify" class="ecuaciones">
+                    <br>
+                    <label for="ecuacion-1-f-p"> \( xe^x-x^3-3=0\)</label>
+                    <input type="radio" id="ecuacion-1-f-p" class="radio" name="ecuaciones">
+                    <div class="ec-2">
+                        <label for="ecuacion-2-f-p"> \( x^2-e^x-3x+2=0\)</label>
+                        <input type="radio" id="ecuacion-2-f-p" class="radio" name="ecuaciones">
+                    </div>
+                </div>
+                <button id="resolver-f-p" class="boton-r">RESOLVER</button>
+                <section id="solucion-fp">
+                    <p>Por lo tanto  \(x \thickapprox \) <b><span id="sol-f-p"></span></b></p>                
+                </section>
+                <div id="tabla-f-p"></div>
+                <br>
+                <br>
+                <br>
+                <button id="regresar-u-2-f-p-2" class="boton">REGRESAR</button>
+                <button id="salir-2" class="boton">SALIR</button>
+            </div>
+        </section>
+        <section id="newton-1">
+            <div class="metodos-1" align="center">
+                <h2>NEWTON</h2>
+                <div align="justify">
+                    <p>Explicación</p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-u-2-n" class="boton">REGRESAR</button>
+                <button id="siguiente-u-2-n" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="newton-2">
+            <div class="metodos-2" align="center">
+                <h2>NEWTON</h2>
+                <div align="center" >
+                    <p>EJEMPLO: Selecciona la ecuación a resolver y el valor inicial:</p>
+                    <div class="intervalo" align="center">                        
+                        <p>Valor inicial: </p>
+                        <label for="valor-inicial"></label>
+                        <input type="text" id="valor-inicial" class="inter">
+                    </div>                    
+                    <div align="justify" class="ecuaciones">
+                        <br>
+                        <label for="ecuacion-1-n"> \( x sen x+2x^2-1=0\)</label>
+                        <input type="radio" id="ecuacion-1-n" class="radio" name="ecuaciones">
+                        <div class="ec-2">
+                            <label for="ecuacion-2-n"> \( x^2-e^x-3x+2=0\)</label>
+                            <input type="radio" id="ecuacion-2-n" class="radio" name="ecuaciones">
+                        </div>
+                    </div>
+                    <button id="resolver-n" class="boton-r">RESOLVER</button>
+                    <br>
+                    <br>
+                    <section id="solucion-n">
+                        <p>Por lo tanto \(x \thickapprox \) <b><span id="sol-n"></span></b></p>
+                    </section>                    
+                    <br>
+                    <br>                    
+                    <div id="tabla-n">
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <button id="regresar-u-2-n-2" class="boton">REGRESAR</button>
+                <button id="salir-3" class="boton">SALIR</button>
+            </div>
+        </section>
+        <section id="secante-1">
+            <div class="metodos-1" align="center">
+                <h2>SECANTE</h2>
+                <div align="justify">
+                    <p>Explicación</p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-u-2-s" class="boton">REGRESAR</button>
+                <button id="siguiente-u-2-s" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="secante-2">
+            <div class="metodos-2" align="center">
+                <h2>SECANTE</h2>
+                <div align="justify">
+                    <p>EJEMPLO</p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-u-2-s-2" class="boton">REGRESAR</button>
+                <button id="salir-4" class="boton">SALIR</button>
+            </div>
+        </section>   
+    </div>
+    <div class="unidad-3" align="center">
+        <section id="unidad-3-introduccion">
+            <div class="introducciones">
+                <h2>Solución de sistemas de ecuaciones lineales</h2>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <button id="regresar-u-3-1" class="boton">REGRESAR</button>
+                <button id="siguiente-u-3-1" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="unidad-3-menu">
+            <div class="menu">
+                <h2>Menú</h2>
+                <h3>Solución de sistemas de ecuaciones lineales</h3>
+                <div align="left">
+                    <br>
+                    <br>
+                    <label for="gauss-jordan" class="radio">GAUSS JORDAN</label>
+                    <input type="radio" id="gauss-jordan" name="enl">
+                    <br>
+                    <label for="jacobi" class="radio">JACOBI</label>
+                    <input type="radio" id="jacobi" name="enl">
+                    <br>
+                    <label for="gauss-seidel" class="radio">GAUSS-SEIDEL</label>
+                    <input type="radio" id="gauss-seidel" name="enl">
+                    <br>
+                </div>
+                <br>
+                <br>
+                <button id="regresar-u-3-2" class="boton">REGRESAR</button>
+                <button id="siguiente-u-3-2" class="boton">SELECCIONAR</button>
+            </div>            
+        </section>
+        <section id="gauss-jordan-1">
+            <div class="metodos-1">
+                <h2>GAUSS-JORDAN</h2>
+                <div align="justify">
+                    <p>Explicación: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-g-j" class="boton">REGRESAR</button>
+                <button id="siguiente-g-j" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="gauss-jordan-2">
+            <div class="metodos-2">
+                <h2>GAUSS-JORDAN</h2>
+                <div align="justify">
+                    <p>EJEMPLO</p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-g-j-2" class="boton">REGRESAR</button>
+                <button id="salir-5" class="boton">SALIR</button>
+            </div>
+        </section>
+        <section id="jacobi-1">
+            <div class="metodos-1">
+                <h2>JACOBI</h2>
+                <div align="justify">
+                    <p>Explicación: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-j" class="boton">REGRESAR</button>
+                <button id="siguiente-j" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="jacobi-2">
+            <div class="metodos-2">
+                <h2>JACOBI</h2>
+                <div align="justify">
+                    <p>EJEMPLO: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-j-2" class="boton">REGRESAR</button>
+                <button id="salir-6" class="boton">SALIR</button>
+            </div>
+        </section>
+        <section id="gauss-seidel-1">
+            <div class="metodos-1">
+                    <h2>GAUSS SEIDEL</h2>
+                    <div align="justify">
+                        <p>Explicación: </p>
+                        <br><br><br><br><br><br><br><br><br><br><br><br>
+                    </div>
+                    <button id="regresar-g-s" class="boton">REGRESAR</button>
+                    <button id="siguiente-g-s" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="gauss-seidel-2">
+            <div class="metodos-2">
+                <h2>GAUSS SEIDEL</h2>
+                <div align="justify">
+                    <p>EJEMPLO: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-g-s-2" class="boton">REGRESAR</button>
+                <button id="salir-7" class="boton">SALIR</button>
+            </div>
+        </section>
+    </div>
+    <!--UNIDAD IV-->
+    <div class="unidad-4">
+        <section id="unidad-4-introduccion">
+            <div class="introducciones" align="center">
+                <h2>Factorización LU y sus aplicaciones</h2>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <button id="regresar-u-4-1" class="boton">REGRESAR</button>
+                <button id="siguiente-u-4-1" class="boton">SIGUIENTE</button>
+            </div>            
+        </section>
+        <section id="unidad-4-menu">
+            <div class="menu" align="center">
+                <h2>Menú</h2>
+                <h3>Factorización LU y sus aplicaciones</h3>
+                <div align="left">
+                    <br>
+                    <br>
+                    <label for="crout" class="radio">CROUT</label>
+                    <input type="radio" id="crout" name="enl">
+                    <br>
+                    <label for="cholesky" class="radio">CHOLESKY</label>
+                    <input type="radio" id="cholesky" name="enl">
+                    <br>                
+                </div>
+                <br>
+                <br>
+                <button id="regresar-u-4-2" class="boton">REGRESAR</button>
+                <button id="siguiente-u-4-2" class="boton">SELECCIONAR</button>
+            </div>                    
+        </section>
+        <section id="crout-1">
+            <div class="metodos-1">
+                <h2>CROUT</h2>
+                <div align="justify">
+                    <p>Explicación: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-c" class="boton">REGRESAR</button>
+                <button id="siguiente-c" class="boton">SIGUIENTE</button>
+            </div>
+        </section>
+        <section id="crout-2">
+            <div class="metodos-2">
+                <h2>CROUT</h2>
+                <div align="justify">
+                    <p>EJEMPLO: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-c-2" class="boton">REGRESAR</button>
+                <button id="salir-8" class="boton">SALIR</button>
+            </div>         
+        </section>
+        <section id="cholesky-1">
+            <div class="metodos-1">
+                <h2>CHOLESKY</h2>
+                <div align="justify">
+                    <p>Explicación: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-csky" class="boton">REGRESAR</button>
+                <button id="siguiente-csky" class="boton">SIGUIENTE</button>
+            </div>            
+        </section>
+        <section id="cholesky-2">
+            <div class="metodos-2">
+                <h2>CHOLESKY</h2>
+                <div align="justify">
+                    <p>EJEMPLO: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-csky-2" class="boton">REGRESAR</button>
+                <button id="salir-9" class="boton">SALIR</button>
+            </div>            
+        </section>
+    </div>
+    <div class="unidad-5">
+        <section id="unidad-5-introduccion">
+            <div class="introducciones" align="center">
+                <h2>UNIDAD V. Cálculo de valores y vectores propios</h2>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <button id="regresar-u-5-1" class="boton">REGRESAR</button>
+                <button id="siguiente-u-5-1" class="boton">SIGUIENTE</button>
+            </div>            
+        </section>
+        <section id="unidad-5-menu">
+            <div class="menu" align="center">
+                <h2>Menú</h2>
+                <h3>Cálculo de valores y vectores propios</h3>
+                <div align="left">
+                    <br>
+                    <br>
+                    <label for="potencia" class="radio">POTENCIA</label>
+                    <input type="radio" id="potencia" name="enl">
+                    <br>
+                    <label for="potencia-inversa" class="radio">POTENCIA-INVERSA</label>
+                    <input type="radio" id="potencia-inversa" name="enl">                
+                </div>
+                <br>
+                <br>
+                <button id="regresar-u-5-2" class="boton">REGRESAR</button>
+                <button id="seleccionar-u-5-2" class="boton">SELECCIONAR</button>
+            </div>                        
+        </section>
+        <section id="potencia-1">
+            <div class="metodos-1">
+                <h2>POTENCIA</h2>
+                <div align="justify">
+                    <p>Explicación: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-p" class="boton">REGRESAR</button>
+                <button id="siguiente-p" class="boton">SIGUIENTE</button>
+            </div>            
+        </section>
+        <section id="potencia-2">
+            <div class="metodos-2">
+                <h2>POTENCIA</h2>
+                <div align="justify">
+                    <p>EJEMPLO: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-p-2" class="boton">REGRESAR</button>
+                <button id="salir-10" class="boton">SALIR</button>
+            </div>            
+        </section>
+        <section id="potencia-inversa-1">
+            <div class="metodos-1">
+                <h2>POTENCIA-INVERSA</h2>
+                <div align="justify">
+                    <p>Explicación: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-p-i" class="boton">REGRESAR</button>
+                <button id="siguiente-p-i" class="boton">SIGUIENTE</button>
+            </div>            
+        </section>
+        <section id="potencia-inversa-2">
+            <div class="metodos-2">
+                <h2>POTENCIA-INVERSA</h2>
+                <div align="justify">
+                    <p>EJEMPLO: </p>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <button id="regresar-p-i-2" class="boton">REGRESAR</button>
+                <button id="salir-11" class="boton">SALIR</button>
+            </div>            
+        </section>
+    </div>
+    <!--SALIDA!!!!!-->
+    <section id="salida">
+        <div class="salida" align="center">
+            <h1>¡¡¡Gracias por utilizar el programa!!!</h1>
+            <img src="despedida.png" alt="">
+        </div>
+    </section>
+    
+</body>
+</html>

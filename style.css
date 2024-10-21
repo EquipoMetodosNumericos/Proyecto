@@ -1,0 +1,142 @@
+body
+{
+    margin: 0 auto;
+    padding: 0;
+    width: 800px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.portada
+{
+    background-color: blanchedalmond;
+    padding: 30px;
+    border-radius: 30px;
+    border-color: black;
+    border-style: inset;
+}
+.boton
+{
+    width: 120px;
+    height: 50px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.introduccion
+{
+    width: 700px;
+    height: 600px;
+    background-color: beige;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 20px;
+    border-color: black;
+    border-style: inset;
+}
+.menu-principal
+{
+    margin: 0 auto;
+    width: 570px;
+    background-color:darkseagreen;
+    padding: 65px;
+    border-radius: 30px;
+    border-color: black;
+    border-style: inset;
+}
+.menu-principal-2
+{
+    color: white; 
+}
+.encabezado
+{
+    display: flex;
+    justify-content: space-between; /* Espacia los elementos a los lados */
+    align-items: center; /* Alinea verticalmente los elementos */
+    align-items: center; /* Alinea verticalmente los elementos */   
+}
+.logo
+{
+    width: 200px;
+    height: 200px;
+}
+.texto-centro
+{
+    flex-grow: 1;
+    margin: 0;
+}
+.introducciones
+{
+    background-color:lemonchiffon;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-color: black;
+    border-style: inset;
+    border-radius: 20px;
+}
+.menu
+{
+    background-color: #9A7E6F;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-left: 30px;
+    border-radius: 30px;
+    border-color: black;
+    border-style: inset;
+}
+.radio
+{
+    cursor: pointer;
+}
+.metodos-1
+{
+    background-color: #E9EED9;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;  
+    justify-content: center; 
+    border-color: black;
+    border-style: inset;
+}
+.metodos-2
+{
+    background-color : #CBD2A4;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;   
+    justify-content: center;
+    border-color: black;
+    border-style: inset;
+}
+.intervalo
+{
+    display: inline-flex;
+}
+.inter
+{
+    padding-top: 15px;
+    width: 25px;
+    height: 18px;
+    justify-content: center;
+}
+.ecuaciones
+{
+    display: flex;
+    padding: 40px;
+}
+.ec-2
+{
+    padding-left: 130px;
+}
+.boton-r
+{
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.salida
+{
+    background-color: rgb(60, 156, 60);
+    width: 700px;
+    height: 300px;
+    padding: 30px;
+    border-radius: 30px;
+}
