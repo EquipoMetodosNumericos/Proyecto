@@ -219,9 +219,34 @@
         <section id="secante-2">
             <div class="metodos-2" align="center">
                 <h2>SECANTE</h2>
-                <div align="justify">
-                    <p>EJEMPLO</p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                <div align="center" >
+                    <p>EJEMPLO: Selecciona la ecuación a resolver y el valor inicial:</p>
+                    <div class="intervalo" align="center">                        
+                        <p>Valor inicial: </p>
+                        <label for="valor-inicial-2"></label>
+                        <input type="text" id="valor-inicial-2" class="inter">
+                    </div>                    
+                    <div align="justify" class="ecuaciones">
+                        <br>
+                        <label for="ecuacion-1-s"> \( x sen x+2x^2-1=0\)</label>
+                        <input type="radio" id="ecuacion-1-s" class="radio" name="ecuaciones">
+                        <div class="ec-2">
+                            <label for="ecuacion-2-s"> \( x^2-e^x-3x+2=0\)</label>
+                            <input type="radio" id="ecuacion-2-s" class="radio" name="ecuaciones">
+                        </div>
+                    </div>
+                    <button id="resolver-s" class="boton-r">RESOLVER</button>
+                    <br>
+                    <br>
+                    <section id="solucion-s">
+                        <p>Por lo tanto \(x \thickapprox \) <b><span id="sol-s"></span></b></p>
+                    </section>                    
+                    <br>
+                    <br>                    
+                    <div id="tabla-s">
+                    </div>
+                    <br>
+                    <br>
                 </div>
                 <button id="regresar-u-2-s-2" class="boton">REGRESAR</button>
                 <button id="salir-4" class="boton">SALIR</button>
@@ -275,9 +300,23 @@
             <div class="metodos-2">
                 <h2>GAUSS-JORDAN</h2>
                 <div align="justify">
-                    <p>EJEMPLO</p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>EJEMPLO: Ingresa el orden de la matriz y el valor de los coeficientes:</p>            
                 </div>
+                <label for="order">Orden de  la Matiz: </label>
+                <input type="text" id="order" class="inter">
+                <br>
+                <br>
+                <button id="create-matrix" class="boton">Crear Mátriz</button>
+                <br>
+                <br>
+                <div id="matrix-gj"></div>
+                <br>
+                <button id="solve-gj" class="boton">Resolver</button>
+                <br>
+                <br>
+                <section id="result-gj"><p>Los resultados son: </p><div id="r-gj"></div></section>
+                <br>
+                <br>
                 <button id="regresar-g-j-2" class="boton">REGRESAR</button>
                 <button id="salir-5" class="boton">SALIR</button>
             </div>

@@ -13,7 +13,7 @@ function iniciarPrograma()
     let inputDate = document.getElementById('fecha');
 
     inputDate.innerHTML = currentDate;
-    //VISIBILIDAD DE SECCIONES
+    //VISIBILIDAD DE SECCIONES ADIOS AMIOGS
     document.getElementById('portada').style.display='block';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'
@@ -48,7 +48,9 @@ function iniciarPrograma()
     document.getElementById('potencia-inversa-1').style.display='none';
     document.getElementById('potencia-inversa-2').style.display='none';    
     document.getElementById('solucion-fp').style.display='none';
-    document.getElementById('solucion-n').style.display = 'none'
+    document.getElementById('solucion-n').style.display = 'none';    
+    document.getElementById('solucion-s').style.display = 'none'
+    document.getElementById('result-gj').style.display = 'none  '
     //TRANSICIONES
     botonSiguiente = document.getElementById('siguiente');
     botonSiguiente.addEventListener('click',function()
@@ -105,12 +107,21 @@ function iniciarPrograma()
     //SELECCION DE METODO UNIDAD V
     let botonSiguienteU52 = document.getElementById('seleccionar-u-5-2');
     botonSiguienteU52.addEventListener('click',seleccionarU5);
-    //RESOLUCION UNIDAD I
+    //RESOLUCION UNIDAD II
     let botonResolverFP = document.getElementById('resolver-f-p');
     botonResolverFP.addEventListener('click',resolverFP);
     //
     let botonResolverN = document.getElementById('resolver-n');
     botonResolverN.addEventListener('click',resolverN);
+    //
+    let botonResolverS = document.getElementById('resolver-s');
+    botonResolverS.addEventListener('click',resolverS);
+    //RESOLUCION UNIDAD III
+    createMatrix();
+    buttonSolveGJ = document.getElementById('solve-gj');
+    buttonSolveGJ.addEventListener('click',solveGJ);
+    //let buttonSolveGJ = document.getElementById('solve-g-j')
+    //buttonSolveGJ.addEventListener('click',solveGJ);
 }
 //SELECCION UNIDAD 
 function seleccionarUnidad()
@@ -516,6 +527,7 @@ function resolverFP(){
     let inputEcuacion1 = document.getElementById('ecuacion-1-f-p');
     let inputEcuacion2 = document.getElementById('ecuacion-2-f-p');
     let tablaFP = document.getElementById('tabla-f-p');
+    let n
 
     if(inputEcuacion1.checked){
         let table = '<table border="1">'; // Agregar un borde a la tabla
@@ -524,7 +536,7 @@ function resolverFP(){
 
         let c;
         let fc;
-        let n = 1;
+        n = 1;
 
         do {
             table += '<tr>';
@@ -533,7 +545,7 @@ function resolverFP(){
             let fb = b * Math.exp(b) - b**3 - 3; // Cálculo de fb
             c = a - fa * ((a - b) / (fa - fb)); // Cálculo de c
             fc = c * Math.exp(c) - c**3 - 3; // Cálculo de fc (sin let para no redeclararla)
-            
+        
             // Actualizar a y b según las condiciones
             if (fa * fc > 0) {
                 a = c; // Si fa y fc tienen el mismo signo, actualiza 'a'
@@ -552,8 +564,17 @@ function resolverFP(){
             table += '</tr>';
             
             n++; // Incrementar el contador de iteraciones
+            if(n>100)
+            {
+                break;
+            }
 
-        } while (Math.abs(fc) > 0.00001); // Salir cuando fc tenga 5 decimales correctos
+        } while (Math.abs(fc) > 0.0001); // Salir cuando fc tenga 5 decimales correctos
+
+        if(n>100)
+        {
+            alert('El intervalo no es adecuado');
+        }
 
         table += '</tbody></table>'; // Cerrar las etiquetas tbody y table
         tablaFP.innerHTML = table; // Asignar el HTML de la tabla al elemento
@@ -596,7 +617,7 @@ function resolverFP(){
             table += `<td>${fc.toFixed(4)}</td>`;
             table += '</tr>';
             n++;
-        } while (Math.abs(fc)>0.00001); // Cambiar la condición de salida según lo que necesites
+        } while (Math.abs(fc)>=0.0001); // Cambiar la condición de salida según lo que necesites
         
         table += '</tbody></table>'; // Cerrar las etiquetas tbody y table
         tablaFP.innerHTML = table; // Asignar el HTML de la tabla al elemento
@@ -635,7 +656,7 @@ function resolverN(){
 
             x = x - (fx/fdx);
             n++;
-        }while(Math.abs(fx)>0.0001);    
+        }while(Math.abs(fx)>0.00001);    
         tablaN.innerHTML=table;    
         document.getElementById('sol-n').innerHTML = x.toFixed(4);
         document.getElementById('solucion-n').style.display = 'block'
@@ -663,7 +684,7 @@ function resolverN(){
             x = x - (fx / fdx); // Actualización de x con el método de Newton-Raphson
             n++; // Incrementar el contador
 
-        } while (Math.abs(fx) > 0.0001); // Salir cuando f(x) converja a 4 decimales
+        } while (Math.abs(fx) > 0.00001); // Salir cuando f(x) converja a 4 decimales
 
         table += '</tbody></table>'; // Cerrar las etiquetas tbody y table
 
@@ -679,6 +700,149 @@ function resolverN(){
     else{
         alert('Ingresa una solución para resolver');
     }
+}
+//RESOLVER SECANTE
+function resolverS(){
+    let x = parseFloat(document.getElementById('valor-inicial-2').value);
+    let x0 = 0;
+    let fx;
+    let fx0;
+    let tablaS = document.getElementById('tabla-s');
+    let n = 1;
+
+    let inputEcuacion1 = document.getElementById('ecuacion-1-s');
+    let inputEcuacion2 = document.getElementById('ecuacion-2-s');
+
+    if(inputEcuacion1.checked){
+        let table = '<table border="1">'; // Agregar un borde a la tabla
+        table += '<thead><tr> <th>n</th>  <th>\(x_n\)</th>  <th>\(f(x)\)</th></tr></thead>'; // Encabezados de la tabla
+        table += '<tbody>'; // Cuerpo de la tabla
+        fx0 = x0*Math.sin(x0) + 2*x0**2-1; 
+        table += `<td>${n}</td>`
+        table += `<td>${x0.toFixed(4)}</td>`
+        table += `<td>${fx0.toFixed(4)}</td>`
+        table += '</tr>';
+        do{
+            n++;
+            fx0 = x0*Math.sin(x0) + 2*x0**2-1; 
+            fx = x*Math.sin(x) + 2*x**2-1;
+            
+            table += `<td>${n}</td>`
+            table += `<td>${x.toFixed(4)}</td>`
+            table += `<td>${fx.toFixed(4)}</td>`
+            table += '</tr>';
+
+            let auxX = x - ((x-x0)/(fx-fx0))*fx;
+            x0 = x;
+            x = auxX;   
+        }while(Math.abs(fx)>0.00001||n>100);
+        table += '</tbody></table>'; 
+        tablaS.innerHTML=table;    
+        document.getElementById('sol-s').innerHTML = x.toFixed(4);
+        document.getElementById('solucion-s').style.display = 'block'
+    }
+    else if(inputEcuacion2.checked){
+        let table = '<table border="1">'; // Add border to the table
+        table += '<thead><tr> <th>n</th>  <th>x_n</th>  <th>f(x)</th></tr></thead>'; // Table headers
+        table += '<tbody>'; // Start table body
+    
+        // Calculate initial f(x0)
+        fx0 = x0 ** 2 - Math.exp(x0) - 3 * x0 + 2; 
+        table += `<tr><td>${n}</td>`; // Open row tag
+        table += `<td>${x0.toFixed(4)}</td>`;
+        table += `<td>${fx0.toFixed(4)}</td></tr>`; // Close row tag
+    
+        do {
+            n++;
+            fx0 = x0 ** 2 - Math.exp(x0) - 3 * x0 + 2; // Recalculate f(x0)
+            fx = x ** 2 - Math.exp(x) - 3 * x + 2; // Calculate f(x)
+    
+            table += `<tr><td>${n}</td>`; // Open row tag
+            table += `<td>${x.toFixed(4)}</td>`;
+            table += `<td>${fx.toFixed(4)}</td></tr>`; // Close row tag
+    
+            let auxX = x - ((x - x0) / (fx - fx0)) * fx; // Calculate next approximation
+            x0 = x; // Update x0
+            x = auxX; // Update x
+    
+        } while (Math.abs(fx) > 0.00001 && n <= 100); // Use && to ensure the loop stops at 100 iterations max
+    
+        table += '</tbody></table>'; // Close table body and table
+        tablaS.innerHTML = table; // Display the table
+        document.getElementById('sol-s').innerHTML = x.toFixed(4); // Display solution
+        document.getElementById('solucion-s').style.display = 'block'; // Show solution section
+    }
+    else{
+        alert('Ingresa una ecuación a resolver :)');
+    }
+}
+function createMatrix(){
+    let n = parseInt(document.getElementById('order').value);
+    let matrixGJ = document.getElementById('matrix-gj');
+    let table = '';
+    let buttonCreateMatrix = document.getElementById('create-matrix');
+    buttonCreateMatrix.addEventListener('click', function() {
+        let n = parseInt(document.getElementById('order').value);
+        let matrixGJ = document.getElementById('matrix-gj');
+        let table = ''; // Reset table content on each click
+
+        table += '<table border="1">'; // Create table structure
+        for (let i = 0; i < n; i++) {
+            table += '<tr>';
+            for (let j = 0; j < n+1; j++) {
+                let eq = "";
+                if(j==n){
+                    eq = '=';
+                }
+                table += `<td>${eq}<label for="matrix-${i}-${j}"></label> <input type="text" id="matrix-${i}-${j}" placeholder="a${i+1},${j+1}" class="inter"></td>`;
+                eq = '';
+            }
+            table += '</tr>';
+        }
+        table += '</table>';
+        matrixGJ.innerHTML = table; // Insert the table into the HTML container
+    });
+}
+function solveGJ(){
+    let n = parseInt(document.getElementById('order').value);
+    var matrix = [];
+    //Read matrix from the document
+    for(let i=0;i<n;i++){
+        matrix[i]=[];
+        for (let j = 0; j < n+1; j++) {
+            matrix[i][j] = parseInt(document.getElementById(`matrix-${i}-${j}`).value);            
+        }
+    }
+    for (let i = 0; i < n; i++) {
+        // Divide the current row by the pivot
+        let pivot = matrix[i][i];
+        if (pivot === 0) {
+            alert("Pivot element is zero. The matrix may be singular or require row swapping.");
+            return;
+        }
+        for (let j = 0; j < n + 1; j++) {
+            matrix[i][j] /= pivot;
+        }
+    
+        // Make other elements in the current column zero
+        for (let k = 0; k < n; k++) {
+            if (k !== i) {
+                let factor = matrix[k][i];
+                for (let j = 0; j < n + 1; j++) {
+                    matrix[k][j] -= factor * matrix[i][j];
+                }
+            }
+        }
+    }
+    //Obtain the results
+    let solution = document.getElementById('r-gj');
+    let results = "";
+    for(i=0;i<n;i++){
+        results += `x_${i+1} = ${matrix[i][n].toFixed(4)} <br>`;
+    }
+    MathJax.typeset();
+    solution.innerHTML = results;
+    document.getElementById('result-gj').style.display = 'block'
 }
 //SALIDA
 function salida(){
