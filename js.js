@@ -878,7 +878,7 @@ function solveGJ(){
     let solution = document.getElementById('r-gj');
     let results = "";
     for(i=0;i<n;i++){
-        results += `\\(x_{${i+1}} = ${matrix[i][i].toFixed(4)}\\) <br>`;
+        results += `\\(x_{${i+1}} = ${matrix[i][n].toFixed(4)}\\) <br>`;
     }
     solution.innerHTML = results;
     MathJax.typeset();
