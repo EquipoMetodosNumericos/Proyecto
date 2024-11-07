@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>METODOS NUMERICOS</title>
-    <script src="./js.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="./js.js" type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -21,7 +20,7 @@
                     <h1>FES ACATLAN</h1>
                     <h2>Métodos Numéricos I</h2>
                 </div>            
-                <img src="metodos-numericos.jpg" alt="" class="logo">
+                <img src="FONDO.png" alt="" class="logo">
             </div>
             <br>
             <br>
@@ -302,16 +301,18 @@
                 <div align="justify">
                     <p>EJEMPLO: Ingresa el orden de la matriz y el valor de los coeficientes:</p>            
                 </div>
-                <label for="order">Orden de  la Matiz: </label>
-                <input type="text" id="order" class="inter">
+                <label for="order-1">Orden de  la Matiz: </label>
+                <input type="text" id="order-1" class="inter">
                 <br>
                 <br>
                 <button id="create-matrix" class="boton">Crear Mátriz</button>
                 <br>
                 <br>
                 <div id="matrix-gj"></div>
-                <br>
-                <button id="solve-gj" class="boton">Resolver</button>
+                <br>    
+                <section id="section-solve-gj">
+                    <button id="solve-gj" class="boton">Resolver</button>
+                </section>
                 <br>
                 <br>
                 <section id="result-gj"><p>Los resultados son: </p><div id="r-gj"></div></section>
@@ -336,8 +337,22 @@
             <div class="metodos-2">
                 <h2>JACOBI</h2>
                 <div align="justify">
-                    <p>EJEMPLO: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>Instrucciones: Ingresa el orden de la matriz a resolver, escribe los coeficientes de cada variable y oprime resolver.</p>
+                    <p>NOTA: El Método garantizará convergencia a la solución cuando la matriz \(|A\) tenga diagonal dominante, osea \(|A_{i,i}\geq|A_{i,j},     \forall i\neq j\)</p>
+                    <p>Orden:</p>
+                    <div align="center">                            
+                        <label for="order-2">Orden de la Matriz: </label>
+                        <input type="text" id="order-2" class="inter">
+                        <br>
+                        <button id="create-matrix-2" class="boton-r">Crear Matriz</button>
+                        <br>
+                        <br>
+                        <div id="matrix-j">
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
                 </div>
                 <button id="regresar-j-2" class="boton">REGRESAR</button>
                 <button id="salir-6" class="boton">SALIR</button>

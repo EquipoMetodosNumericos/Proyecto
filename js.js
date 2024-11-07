@@ -13,7 +13,8 @@ function iniciarPrograma()
     let inputDate = document.getElementById('fecha');
 
     inputDate.innerHTML = currentDate;
-    //VISIBILIDAD DE SECCIONES ADIOS AMIOGS
+    //VISIBILIDAD DE SECCIONES ADIOS AMIOGS    
+    document.getElementById('section-solve-gj').style.display='none'        
     document.getElementById('portada').style.display='block';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'
@@ -117,9 +118,19 @@ function iniciarPrograma()
     let botonResolverS = document.getElementById('resolver-s');
     botonResolverS.addEventListener('click',resolverS);
     //RESOLUCION UNIDAD III
-    createMatrix();
+    let buttonCreateMatrix = document.getElementById('create-matrix');
+    buttonCreateMatrix.addEventListener('click', function(){
+        createMatrix(1);
+    }); 
+
+    let buttonCreateMatrix2 = document.getElementById('create-matrix-2');
+    buttonCreateMatrix2.addEventListener('click', function(){
+        createMatrix(2);
+    }); 
+    //
     buttonSolveGJ = document.getElementById('solve-gj');
     buttonSolveGJ.addEventListener('click',solveGJ);
+    //
     //let buttonSolveGJ = document.getElementById('solve-g-j')
     //buttonSolveGJ.addEventListener('click',solveGJ);
 }
@@ -776,41 +787,70 @@ function resolverS(){
         alert('Ingresa una ecuación a resolver :)');
     }
 }
-function createMatrix(){
-    let n = parseInt(document.getElementById('order').value);
-    let matrixGJ = document.getElementById('matrix-gj');
-    let table = '';
-    let buttonCreateMatrix = document.getElementById('create-matrix');
-    buttonCreateMatrix.addEventListener('click', function() {
-        let n = parseInt(document.getElementById('order').value);
-        let matrixGJ = document.getElementById('matrix-gj');
-        let table = ''; // Reset table content on each click
+function createMatrix(ord){
+    document.getElementById('section-solve-gj').style.display='block';
+    let n = parseInt(document.getElementById(`order-${ord}`).value);
+    let matrix;
+    let indx;
+    if(ord==1){
+        matrix = document.getElementById('matrix-gj');
+        indx = 'gj';
+    }
+    else{
+        matrix = document.getElementById('matrix-j');
+        indx = 'j';
+    }
+    let table = ''; 
 
-        table += '<table border="1">'; // Create table structure
-        for (let i = 0; i < n; i++) {
-            table += '<tr>';
-            for (let j = 0; j < n+1; j++) {
-                let eq = "";
-                if(j==n){
-                    eq = '=';
-                }
-                table += `<td>${eq}<label for="matrix-${i}-${j}"></label> <input type="text" id="matrix-${i}-${j}" placeholder="a${i+1},${j+1}" class="inter"></td>`;
-                eq = '';
+    table += '<table border="0">'; // Create table structure
+    for (let i = 0; i < n; i++) {
+        table += '<tr>';
+        for (let j = 0; j < n+1; j++) {
+            let eq = "";
+            let vr='';                
+            if(j==n){
+                eq = '=';
+                vr = ` `;                    
+            }                
+            else{
+                eq='+'
+                vr=`\\(x_${j+1}\\)`;                    
             }
-            table += '</tr>';
+            if(j==0){
+                eq='';
+            }
+            table += `<td>${eq}<label for="matrix-${i}-${j}-${indx}"></label> <input type="text" id="matrix-${i}-${j}-${indx}" placeholder="a${i+1},${j+1}" class="inter">${vr}</td>`;
+            eq = '';
+            vr='';
         }
-        table += '</table>';
-        matrixGJ.innerHTML = table; // Insert the table into the HTML container
-    });
+        table += '</tr>';
+    }
+    table += '</table>';
+    matrix.innerHTML = table; // Insert the table into the HTML container
+    MathJax.typeset();
 }
 function solveGJ(){
-    let n = parseInt(document.getElementById('order').value);
+    let n = parseInt(document.getElementById('order-1').value);
     var matrix = [];
+    let cen=0;
     //Read matrix from the document
-    for(let i=0;i<n;i++){
-        matrix[i]=[];
-        for (let j = 0; j < n+1; j++) {
-            matrix[i][j] = parseInt(document.getElementById(`matrix-${i}-${j}`).value);            
+    let valid = true; // Bandera para controlar si la matriz es válida
+
+    // Leer la matriz desde el documento
+    for (let i = 0; i < n && valid; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < n + 1; j++) {
+            let value = document.getElementById(`matrix-${i}-${j}-gj`).value;
+            
+            // Verificar si el valor está vacío o nulo
+            if (value === "") {
+                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                valid = false; // Marcar la matriz como no válida
+                break; // Salir del bucle interior
+            }
+            
+            // Convertir a número e insertar en la matriz
+            matrix[i][j] = parseInt(value);
         }
     }
     for (let i = 0; i < n; i++) {
@@ -838,10 +878,10 @@ function solveGJ(){
     let solution = document.getElementById('r-gj');
     let results = "";
     for(i=0;i<n;i++){
-        results += `x_${i+1} = ${matrix[i][n].toFixed(4)} <br>`;
+        results += `\\(x_{${i+1}} = ${matrix[i][i].toFixed(4)}\\) <br>`;
     }
-    MathJax.typeset();
     solution.innerHTML = results;
+    MathJax.typeset();
     document.getElementById('result-gj').style.display = 'block'
 }
 //SALIDA
