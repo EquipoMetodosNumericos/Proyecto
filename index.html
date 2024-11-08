@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>METODOS NUMERICOS</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> 
     <script src="./js.js" type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -301,21 +302,21 @@
                 <div align="justify">
                     <p>EJEMPLO: Ingresa el orden de la matriz y el valor de los coeficientes:</p>            
                 </div>
-                <label for="order-1">Orden de  la Matiz: </label>
-                <input type="text" id="order-1" class="inter">
+                <label for="orden-1">Orden de  la Matiz: </label>
+                <input type="text" id="orden-1" class="inter">
                 <br>
                 <br>
-                <button id="create-matrix" class="boton">Crear Mátriz</button>
+                <button id="crear-matriz" class="boton">Crear Mátriz</button>
                 <br>
                 <br>
-                <div id="matrix-gj"></div>
+                <div id="matriz-gj"></div>
                 <br>    
-                <section id="section-solve-gj">
-                    <button id="solve-gj" class="boton">Resolver</button>
+                <section id="section-resolver-gj">
+                    <button id="resolver-gj" class="boton">Resolver</button>
                 </section>
                 <br>
                 <br>
-                <section id="result-gj"><p>Los resultados son: </p><div id="r-gj"></div></section>
+                <section id="resultado-gj"><p>Los resultados son: </p><div id="r-gj"></div></section>
                 <br>
                 <br>
                 <button id="regresar-g-j-2" class="boton">REGRESAR</button>
@@ -338,20 +339,29 @@
                 <h2>JACOBI</h2>
                 <div align="justify">
                     <p>Instrucciones: Ingresa el orden de la matriz a resolver, escribe los coeficientes de cada variable y oprime resolver.</p>
-                    <p>NOTA: El Método garantizará convergencia a la solución cuando la matriz \(|A\) tenga diagonal dominante, osea \(|A_{i,i}\geq|A_{i,j},     \forall i\neq j\)</p>
+                    <p>NOTA: El Método garantizará convergencia a la solución cuando la matriz \(A\) tenga diagonal dominante, osea \(A_{i,i}\geq A_{i,j},     \forall i\neq j\)</p>
                     <p>Orden:</p>
                     <div align="center">                            
-                        <label for="order-2">Orden de la Matriz: </label>
-                        <input type="text" id="order-2" class="inter">
-                        <br>
-                        <button id="create-matrix-2" class="boton-r">Crear Matriz</button>
+                        <label for="orden-2">Orden de la Matriz: </label>
+                        <input type="text" id="orden-2" class="inter">
                         <br>
                         <br>
-                        <div id="matrix-j">
+                        <button id="crear-matriz-2" class="boton-r">Crear Matriz</button>
+                        <br>
+                        <br>
+                        <div id="matriz-j">
                         </div>
                         <br>
                         <br>
-
+                        <section id="section-resolver-j">
+                            <button id="resolver-jacobi" class="boton-r">Resolver</button>
+                        </section>
+                        <br>
+                        <br>
+                        <div id="r-j"></div>
+                        <div id="tabla-jacobi"></div>
+                        <br>
+                        <br>
                     </div>
                 </div>
                 <button id="regresar-j-2" class="boton">REGRESAR</button>

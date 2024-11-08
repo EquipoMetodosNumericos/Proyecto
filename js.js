@@ -14,7 +14,8 @@ function iniciarPrograma()
 
     inputDate.innerHTML = currentDate;
     //VISIBILIDAD DE SECCIONES ADIOS AMIOGS    
-    document.getElementById('section-solve-gj').style.display='none'        
+    document.getElementById('section-resolver-gj').style.display='none';
+    document.getElementById('section-resolver-j').style.display='none';        
     document.getElementById('portada').style.display='block';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'
@@ -51,7 +52,7 @@ function iniciarPrograma()
     document.getElementById('solucion-fp').style.display='none';
     document.getElementById('solucion-n').style.display = 'none';    
     document.getElementById('solucion-s').style.display = 'none'
-    document.getElementById('result-gj').style.display = 'none  '
+    document.getElementById('resultado-gj').style.display = 'none  '
     //TRANSICIONES
     botonSiguiente = document.getElementById('siguiente');
     botonSiguiente.addEventListener('click',function()
@@ -118,21 +119,22 @@ function iniciarPrograma()
     let botonResolverS = document.getElementById('resolver-s');
     botonResolverS.addEventListener('click',resolverS);
     //RESOLUCION UNIDAD III
-    let buttonCreateMatrix = document.getElementById('create-matrix');
-    buttonCreateMatrix.addEventListener('click', function(){
-        createMatrix(1);
+    //Crear Matriz Gauss Jordan
+    let botonCrearMatriz = document.getElementById('crear-matriz');
+    botonCrearMatriz.addEventListener('click', function(){
+        crearMatriz(1);
     }); 
-
-    let buttonCreateMatrix2 = document.getElementById('create-matrix-2');
-    buttonCreateMatrix2.addEventListener('click', function(){
-        createMatrix(2);
+    //Crear Matriz Jacobi
+    let botonCrearMatriz2 = document.getElementById('crear-matriz-2');
+    botonCrearMatriz2.addEventListener('click', function(){
+        crearMatriz(2);
     }); 
-    //
-    buttonSolveGJ = document.getElementById('solve-gj');
-    buttonSolveGJ.addEventListener('click',solveGJ);
-    //
-    //let buttonSolveGJ = document.getElementById('solve-g-j')
-    //buttonSolveGJ.addEventListener('click',solveGJ);
+    //Resolver Gauss Jordan
+    botonResolverGJ = document.getElementById('resolver-gj');
+    botonResolverGJ.addEventListener('click',resolverGJ);
+    //Resolver Jacobi
+    botonResolverJ = document.getElementById('resolver-jacobi');
+    botonResolverJ.addEventListener('click',resolverJ);
 }
 //SELECCION UNIDAD 
 function seleccionarUnidad()
@@ -753,136 +755,237 @@ function resolverS(){
         document.getElementById('solucion-s').style.display = 'block'
     }
     else if(inputEcuacion2.checked){
-        let table = '<table border="1">'; // Add border to the table
-        table += '<thead><tr> <th>n</th>  <th>x_n</th>  <th>f(x)</th></tr></thead>'; // Table headers
-        table += '<tbody>'; // Start table body
+        let table = '<table border="1">'; 
+        table += '<thead><tr> <th>n</th>  <th>x_n</th>  <th>f(x)</th></tr></thead>'; 
+        table += '<tbody>'; 
     
-        // Calculate initial f(x0)
         fx0 = x0 ** 2 - Math.exp(x0) - 3 * x0 + 2; 
-        table += `<tr><td>${n}</td>`; // Open row tag
+        table += `<tr><td>${n}</td>`; 
         table += `<td>${x0.toFixed(4)}</td>`;
-        table += `<td>${fx0.toFixed(4)}</td></tr>`; // Close row tag
+        table += `<td>${fx0.toFixed(4)}</td></tr>`; 
     
         do {
             n++;
-            fx0 = x0 ** 2 - Math.exp(x0) - 3 * x0 + 2; // Recalculate f(x0)
-            fx = x ** 2 - Math.exp(x) - 3 * x + 2; // Calculate f(x)
+            fx0 = x0 ** 2 - Math.exp(x0) - 3 * x0 + 2; 
+            fx = x ** 2 - Math.exp(x) - 3 * x + 2; 
     
-            table += `<tr><td>${n}</td>`; // Open row tag
+            table += `<tr><td>${n}</td>`; 
             table += `<td>${x.toFixed(4)}</td>`;
-            table += `<td>${fx.toFixed(4)}</td></tr>`; // Close row tag
+            table += `<td>${fx.toFixed(4)}</td></tr>`; 
     
-            let auxX = x - ((x - x0) / (fx - fx0)) * fx; // Calculate next approximation
-            x0 = x; // Update x0
-            x = auxX; // Update x
+            let auxX = x - ((x - x0) / (fx - fx0)) * fx; 
+            x0 = x; 
+            x = auxX; 
     
-        } while (Math.abs(fx) > 0.00001 && n <= 100); // Use && to ensure the loop stops at 100 iterations max
+        } while (Math.abs(fx) > 0.00001 && n <= 100); 
     
-        table += '</tbody></table>'; // Close table body and table
-        tablaS.innerHTML = table; // Display the table
-        document.getElementById('sol-s').innerHTML = x.toFixed(4); // Display solution
-        document.getElementById('solucion-s').style.display = 'block'; // Show solution section
+        table += '</tbody></table>'; 
+        tablaS.innerHTML = table; 
+        document.getElementById('sol-s').innerHTML = x.toFixed(4); 
+        document.getElementById('solucion-s').style.display = 'block';
     }
     else{
         alert('Ingresa una ecuación a resolver :)');
     }
 }
-function createMatrix(ord){
-    document.getElementById('section-solve-gj').style.display='block';
-    let n = parseInt(document.getElementById(`order-${ord}`).value);
-    let matrix;
-    let indx;
+//CREAR MATRIZ
+function crearMatriz(ord){
+    document.getElementById('section-resolver-gj').style.display='block';
+    document.getElementById('section-resolver-j').style.display='block';
+
+    let n = parseInt(document.getElementById(`orden-${ord}`).value);
+
+    let cen=true;
+    if(n<1){
+        cen=false;
+        alert('El valor de la matriz es inválido, Gilberto')
+    }
+    let matriz;
+    let ind;
     if(ord==1){
-        matrix = document.getElementById('matrix-gj');
-        indx = 'gj';
+        matriz = document.getElementById('matriz-gj');
+        ind = 'gj';
     }
     else{
-        matrix = document.getElementById('matrix-j');
-        indx = 'j';
+        matriz = document.getElementById('matriz-j');
+        ind = 'j';
     }
+    //Creación de la tabla que sobreescribirá el div en el doc
     let table = ''; 
-
-    table += '<table border="0">'; // Create table structure
+    table += '<table border="0">'; 
     for (let i = 0; i < n; i++) {
         table += '<tr>';
         for (let j = 0; j < n+1; j++) {
-            let eq = "";
+            if(n>10){
+                alert('El valor de la matriz es inválido, Gilberto');
+                cen = false;
+                break;
+            }        
+            let sg = "";
             let vr='';                
             if(j==n){
-                eq = '=';
+                sg = '=';
                 vr = ` `;                    
             }                
             else{
-                eq='+'
+                sg='+'
                 vr=`\\(x_${j+1}\\)`;                    
             }
             if(j==0){
-                eq='';
+                sg='';
             }
-            table += `<td>${eq}<label for="matrix-${i}-${j}-${indx}"></label> <input type="text" id="matrix-${i}-${j}-${indx}" placeholder="a${i+1},${j+1}" class="inter">${vr}</td>`;
-            eq = '';
+            table += `<td>${sg}<label for="matriz-${i}-${j}-${ind}"></label> <input type="text" id="matriz-${i}-${j}-${ind}" placeholder="a${i+1},${j+1}" class="inter">${vr}</td>`;
+            sg = '';
             vr='';
+        }
+        if(cen==false){
+            break;
         }
         table += '</tr>';
     }
+    if(cen==false){
+        document.getElementById('section-resolver-gj').style.display='none';
+        document.getElementById('section-resolver-j').style.display='none';
+    }
     table += '</table>';
-    matrix.innerHTML = table; // Insert the table into the HTML container
-    MathJax.typeset();
+    matriz.innerHTML = table; // Insertar la tabla en el div
+    MathJax.typeset(); //Forzar rendericación con la API
 }
-function solveGJ(){
-    let n = parseInt(document.getElementById('order-1').value);
-    var matrix = [];
-    let cen=0;
-    //Read matrix from the document
-    let valid = true; // Bandera para controlar si la matriz es válida
-
+//RESOLVER GJ
+function resolverGJ(){
+    let n = parseInt(document.getElementById('orden-1').value);
+    var matriz = [];
+    let cen = true; // Centinela
     // Leer la matriz desde el documento
-    for (let i = 0; i < n && valid; i++) {
-        matrix[i] = [];
+    for (let i = 0; i < n && cen; i++) {
+        matriz[i] = [];
         for (let j = 0; j < n + 1; j++) {
-            let value = document.getElementById(`matrix-${i}-${j}-gj`).value;
+            let valor = document.getElementById(`matriz-${i}-${j}-gj`).value;
             
             // Verificar si el valor está vacío o nulo
-            if (value === "") {
+            if (valor === "") {
                 alert('El valor de los coeficientes no puede estar vacío, Gilberto');
-                valid = false; // Marcar la matriz como no válida
+                cen = false; // Marcar la matriz como no válida
                 break; // Salir del bucle interior
             }
             
             // Convertir a número e insertar en la matriz
-            matrix[i][j] = parseInt(value);
+            matriz[i][j] = parseInt(valor);
         }
     }
     for (let i = 0; i < n; i++) {
-        // Divide the current row by the pivot
-        let pivot = matrix[i][i];
-        if (pivot === 0) {
-            alert("Pivot element is zero. The matrix may be singular or require row swapping.");
+        // Dividir la fila actual entre el pivote
+        let pivote = matriz[i][i];
+        if (pivote === 0) {
+            alert("El elemento pivote es cero, no se puede emplear el método, Gilberto.");
             return;
         }
         for (let j = 0; j < n + 1; j++) {
-            matrix[i][j] /= pivot;
+            matriz[i][j] /= pivote;
         }
     
-        // Make other elements in the current column zero
+        // Hacer los demás elementos ceros en la columna actual
         for (let k = 0; k < n; k++) {
             if (k !== i) {
-                let factor = matrix[k][i];
+                let factor = matriz[k][i];
                 for (let j = 0; j < n + 1; j++) {
-                    matrix[k][j] -= factor * matrix[i][j];
+                    matriz[k][j] -= factor * matriz[i][j];
                 }
             }
         }
     }
-    //Obtain the results
-    let solution = document.getElementById('r-gj');
-    let results = "";
+    //Obtener los resultados de la ultima columna de la matriz aumentada
+    let solucion = document.getElementById('r-gj');
+    let reultados = "";
     for(i=0;i<n;i++){
-        results += `\\(x_{${i+1}} = ${matrix[i][n].toFixed(4)}\\) <br>`;
+        reultados += `\\(x_{${i+1}} = ${matriz[i][n].toFixed(4)}\\) <br>`;
     }
-    solution.innerHTML = results;
+    solucion.innerHTML = reultados;
     MathJax.typeset();
-    document.getElementById('result-gj').style.display = 'block'
+    document.getElementById('resultado-gj').style.display = 'block'
+}
+//RESOLVER JACOBI
+function resolverJ(){
+    let n = parseInt(document.getElementById('orden-2').value);
+    var matriz = [];
+    let cen = true; // Centinela
+    // Leer la matriz desde el documento
+    for (let i = 0; i < n && cen; i++) {
+        matriz[i] = [];
+        for (let j = 0; j < n + 1; j++) {
+            let valor = document.getElementById(`matriz-${i}-${j}-j`).value;            
+            // Verificar si el valor está vacío o nulo
+            if (valor === "") {
+                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                cen = false; // Marcar la matriz como no válida
+                break; // Salir del bucle interior
+            }            
+            // Convertir a número e insertar en la matriz
+            matriz[i][j] = parseInt(valor);
+        }
+    }   
+    //Verificar si la matriz de la diagonal es dominante
+    cen=true;
+    for (let i = 0; i < n && cen; i++) {
+        for (let j = 0; j < n-1 + 1; j++) {  
+            if(i!=j){
+                if (matriz[i][i]<matriz[i][j]) {
+                    alert('La diagonal no es dominante, Gilberto');
+                    cen = false; // Marcar la matriz como no válida
+                    break; // Salir del bucle interior
+                }    
+            }                                          
+        }
+    }   
+
+    let sol = Array(n).fill(0); 
+    let auxSol = Array(n).fill(0); 
+    let convergencia;
+    let table = "<table border='1'><thead><th>n</th>";
+    let tablaJacobi = document.getElementById('tabla-jacobi');
+    let iter=0;
+    //Encabezados
+    for(i=0;i<n;i++){
+        table+=`<th>x_${i+1}</th>`;
+    }
+    table+='</thead>';
+    do {
+        convergencia = true;
+        for (let i = 0; i < n; i++) {
+            let x = matriz[i][i] ** -1 * matriz[i][n]; // Reiniciamos x para cada i
+            for (let j = 0; j < n; j++) {
+                if (i != j) {
+                    x += matriz[i][i] ** -1 * (-matriz[i][j] * sol[j]);
+                }
+            }            
+            auxSol[i] = x; // Guardamos el nuevo valor provisional en auxSol
+        }
+        //Creacion de tabla de iteraciones
+        iter++;
+        table+=`<tr><td>${iter}</td>`;
+        for(i=0;i<n;i++){
+            table += `<td>${(auxSol[i]).toFixed(4)}</td>`;
+        }
+        table+=`</tr>`;
+        // Verificamos si el cambio entre sol y auxSol está por debajo de la tolerancia
+        for (let i = 0; i < n; i++) {
+            if (Math.abs(sol[i] - auxSol[i]) > 0.0001) {
+                convergencia = false;
+                break;
+            }
+        }
+        // Actualizamos sol para la próxima iteración
+        sol = [...auxSol]; 
+    } while (!convergencia);
+    table+="</table>"
+    let resultadosJacobi = document.getElementById('r-j');
+    let resultados="";
+    for (let i = 0; i < n; i++) {
+        resultados += `\\(x_${i+1} \\thickapprox ${(sol[i]).toFixed(4)}\\)<br>`;
+    }
+    tablaJacobi.innerHTML = table;
+    resultadosJacobi.innerHTML = resultados;
+    MathJax.typeset();
 }
 //SALIDA
 function salida(){
