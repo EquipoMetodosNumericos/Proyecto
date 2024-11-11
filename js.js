@@ -15,7 +15,8 @@ function iniciarPrograma()
     inputDate.innerHTML = currentDate;
     //VISIBILIDAD DE SECCIONES ADIOS AMIOGS    
     document.getElementById('section-resolver-gj').style.display='none';
-    document.getElementById('section-resolver-j').style.display='none';        
+    document.getElementById('section-resolver-j').style.display='none';           
+    document.getElementById('section-resolver-gs').style.display='none'; 
     document.getElementById('portada').style.display='block';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'
@@ -129,12 +130,20 @@ function iniciarPrograma()
     botonCrearMatriz2.addEventListener('click', function(){
         crearMatriz(2);
     }); 
+    //Crear Matriz Gauss Seidel
+    let botonCrearMatriz3 = document.getElementById('crear-matriz-3');
+    botonCrearMatriz3.addEventListener('click', function(){
+        crearMatriz(3);
+    }); 
     //Resolver Gauss Jordan
     botonResolverGJ = document.getElementById('resolver-gj');
     botonResolverGJ.addEventListener('click',resolverGJ);
     //Resolver Jacobi
     botonResolverJ = document.getElementById('resolver-jacobi');
     botonResolverJ.addEventListener('click',resolverJ);
+    //Resolver Gauss-Seidel
+    botonResolverGS = document.getElementById('resolver-gauss-seidel');
+    botonResolverGS.addEventListener('click',resolverGS);
 }
 //SELECCION UNIDAD 
 function seleccionarUnidad()
@@ -557,7 +566,7 @@ function resolverFP(){
             let fa = a * Math.exp(a) - a**3 - 3; // Cálculo de fa
             let fb = b * Math.exp(b) - b**3 - 3; // Cálculo de fb
             c = a - fa * ((a - b) / (fa - fb)); // Cálculo de c
-            fc = c * Math.exp(c) - c**3 - 3; // Cálculo de fc (sin let para no redeclararla)
+            fc = c * Math.exp(c) - c**3 - 3; // Cálculo de fc 
         
             // Actualizar a y b según las condiciones
             if (fa * fc > 0) {
@@ -582,7 +591,7 @@ function resolverFP(){
                 break;
             }
 
-        } while (Math.abs(fc) > 0.0001); // Salir cuando fc tenga 5 decimales correctos
+        } while (Math.abs(fc) > 0.0001); // Salir cuando fc tenga 4 decimales correctos
 
         if(n>100)
         {
@@ -792,6 +801,7 @@ function resolverS(){
 function crearMatriz(ord){
     document.getElementById('section-resolver-gj').style.display='block';
     document.getElementById('section-resolver-j').style.display='block';
+    document.getElementById('section-resolver-gs').style.display='block';
 
     let n = parseInt(document.getElementById(`orden-${ord}`).value);
 
@@ -806,9 +816,13 @@ function crearMatriz(ord){
         matriz = document.getElementById('matriz-gj');
         ind = 'gj';
     }
-    else{
+    else if(ord==2){
         matriz = document.getElementById('matriz-j');
         ind = 'j';
+    }
+    else{
+        matriz = document.getElementById('matriz-gs');
+        ind = 'gs';
     }
     //Creación de la tabla que sobreescribirá el div en el doc
     let table = ''; 
@@ -918,7 +932,7 @@ function resolverJ(){
             if (valor === "") {
                 alert('El valor de los coeficientes no puede estar vacío, Gilberto');
                 cen = false; // Marcar la matriz como no válida
-                break; // Salir del bucle interior
+                break; // Salir del bucle 
             }            
             // Convertir a número e insertar en la matriz
             matriz[i][j] = parseInt(valor);
@@ -937,55 +951,142 @@ function resolverJ(){
             }                                          
         }
     }   
-
-    let sol = Array(n).fill(0); 
-    let auxSol = Array(n).fill(0); 
-    let convergencia;
-    let table = "<table border='1'><thead><th>n</th>";
-    let tablaJacobi = document.getElementById('tabla-jacobi');
-    let iter=0;
-    //Encabezados
-    for(i=0;i<n;i++){
-        table+=`<th>x_${i+1}</th>`;
-    }
-    table+='</thead>';
-    do {
-        convergencia = true;
-        for (let i = 0; i < n; i++) {
-            let x = matriz[i][i] ** -1 * matriz[i][n]; // Reiniciamos x para cada i
-            for (let j = 0; j < n; j++) {
-                if (i != j) {
-                    x += matriz[i][i] ** -1 * (-matriz[i][j] * sol[j]);
-                }
-            }            
-            auxSol[i] = x; // Guardamos el nuevo valor provisional en auxSol
-        }
-        //Creacion de tabla de iteraciones
-        iter++;
-        table+=`<tr><td>${iter}</td>`;
+    if(cen){
+        let sol = Array(n).fill(0); 
+        let auxSol = Array(n).fill(0); 
+        let convergencia;
+        let table = `<h2>Tabla Jacobí</h2><br><table class="tabla-jacobi" border="1"><thead><th>n</th>`;
+        let tablaJacobi = document.getElementById('tabla-jacobi');
+        let iter=0;
+        //Encabezados
         for(i=0;i<n;i++){
-            table += `<td>${(auxSol[i]).toFixed(4)}</td>`;
+            table+=`<th width="50px">\\( \\mathbf{x_{${i+1}}} \\)</th>`;
         }
-        table+=`</tr>`;
-        // Verificamos si el cambio entre sol y auxSol está por debajo de la tolerancia
-        for (let i = 0; i < n; i++) {
-            if (Math.abs(sol[i] - auxSol[i]) > 0.0001) {
-                convergencia = false;
-                break;
+        table+='</thead>';
+        do {
+            convergencia = true;
+            for (let i = 0; i < n; i++) {
+                let x = matriz[i][i] ** -1 * matriz[i][n]; // Reiniciamos x para cada i
+                for (let j = 0; j < n; j++) {
+                    if (i != j) {
+                        x += matriz[i][i] ** -1 * (-matriz[i][j] * sol[j]);
+                    }
+                }            
+                auxSol[i] = x; // Guardamos el nuevo valor provisional en auxSol
             }
+            //Creacion de tabla de iteraciones
+            iter++;
+            table+=`<tr><td width="50px" align="center">${iter}</td>`;
+            for(i=0;i<n;i++){
+                table += `<td width="70px" align="center">${(auxSol[i]).toFixed(4)}</td>`;
+            }
+            table+=`</tr>`;
+            // Verifica convergencia con el último valor conocido de cada variable, asegurando que la osilacion se minima
+            for (let i = 0; i < n; i++) {
+                if (Math.abs(sol[i] - auxSol[i]) > 0.0001) {
+                    convergencia = false;
+                    break;
+                }
+            }
+            // Actualizamos sol para la próxima iteración
+            sol = [...auxSol]; 
+        } while (!convergencia);
+        table+="</table>"
+        let resultadosJacobi = document.getElementById('r-j');
+        let resultados="Los Resultados son: <br>";
+        for (let i = 0; i < n; i++) {
+            resultados += `\\(x_${i+1} \\thickapprox ${(sol[i]).toFixed(4)}\\)<br>`;
         }
-        // Actualizamos sol para la próxima iteración
-        sol = [...auxSol]; 
-    } while (!convergencia);
-    table+="</table>"
-    let resultadosJacobi = document.getElementById('r-j');
-    let resultados="";
-    for (let i = 0; i < n; i++) {
-        resultados += `\\(x_${i+1} \\thickapprox ${(sol[i]).toFixed(4)}\\)<br>`;
+        resultados += "<br><br>";
+        tablaJacobi.innerHTML = table;
+        resultadosJacobi.innerHTML = resultados;
+        MathJax.typeset();
+    }    
+}
+//Resolver Gauss-Seidel
+function resolverGS(){
+    let n = parseInt(document.getElementById('orden-3').value);
+    var matriz = [];
+    let cen = true; // Centinela
+    // Leer la matriz desde el documento
+    for (let i = 0; i < n && cen; i++) {
+        matriz[i] = [];
+        for (let j = 0; j < n + 1; j++) {
+            let valor = document.getElementById(`matriz-${i}-${j}-gs`).value;            
+            // Verificar si el valor está vacío o nulo
+            if (valor === "") {
+                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                cen = false; // Marcar la matriz como no válida
+                break; // Salir del bucle interior
+            }            
+            // Convertir a número e insertar en la matriz
+            matriz[i][j] = parseInt(valor);
+        }
+    }   
+    //Verificar si la matriz de la diagonal es estrictamente dominante
+    cen=true;
+    let sum=0;
+    let vdiag=0;
+    for (let i = 0; i < n && cen; i++) {
+        for (let j = 0; j < n-1 + 1; j++) { 
+            vdiag = matriz[i][i];
+            if(i!=j){
+                sum += matriz[i][j];
+                if(vdiag<sum){
+                    alert('La matriz no es estrictamente dominante, Gilberto');
+                    break;
+                    cen=false;
+                }
+            }                                          
+        }
     }
-    tablaJacobi.innerHTML = table;
-    resultadosJacobi.innerHTML = resultados;
-    MathJax.typeset();
+    if(cen){
+        let sol = Array(n).fill(0); 
+        let convergencia;
+        let table = `<h2>Tabla Gauss Seidel</h2><br><table class="tabla-jacobi" border="1"><thead><th>n</th>`;
+        //Encabezados
+        for(i=0;i<n;i++){
+            table += `<th>\\( \\mathbf{x_{${i+1}}}\\)</th>`;
+        }
+        table+='</thead>';
+        let tablaGaussSeidel = document.getElementById('tabla-gauss-seidel');
+        let iter=0;  
+        do{
+            convergencia=true;
+            for(i=0;i<n;i++){
+                    let x = matriz[i][i] ** -1 * matriz[i][n];
+                    for(let j=0;j<n;j++){
+                        if(j!=i){
+                            x += matriz[i][i] ** -1 * (-matriz[i][j] * sol[j]);
+                        }
+                    }                
+                //Verificar convergencia entre el valor actual de cada variable y el último conocido
+                if(Math.abs(sol[i]-x)>0.0001){
+                    convergencia=false;
+                }
+                sol[i] = x;                
+            }
+            //Creacion de tabla de iteraciones
+            iter++;
+            table+=`<tr><td width="50px" align="center">${iter}</td>`;
+            for(i=0;i<n;i++){
+                table += `<td width="70px" align="center">${(sol[i]).toFixed(4)}</td>`;
+            }
+            table += '</tr>';
+        }while(!convergencia);
+        table += '</table>'
+        let resultadosGaussSeidel = document.getElementById('r-gs');
+        let resultados="Los Resultados son: <br>";
+        for (let i = 0; i < n; i++) {
+            resultados += `\\(x_${i+1} \\thickapprox ${(sol[i]).toFixed(4)}\\)<br>`;
+        }
+        resultados += "<br><br>";
+        //Sobreescritura de la tabla y los resultados
+        resultadosGaussSeidel.innerHTML=resultados;
+        tablaGaussSeidel.innerHTML = table;
+        //Forzar renderización
+        MathJax.typeset();
+    }
 }
 //SALIDA
 function salida(){
@@ -1008,7 +1109,6 @@ function salida(){
     document.getElementById('jacobi-1').style.display='none';
     document.getElementById('jacobi-2').style.display='none';
     document.getElementById('gauss-seidel-1').style.display='none';
-    document.getElementById('gauss-seidel-2').style.display='none';
     document.getElementById('gauss-seidel-2').style.display='none';
     document.getElementById('unidad-4-introduccion').style.display='none';
     document.getElementById('unidad-4-menu').style.display='none';

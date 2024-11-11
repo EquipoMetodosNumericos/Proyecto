@@ -4,6 +4,7 @@ body
     padding: 0;
     width: 800px;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: wheat;
 }
 .portada
 {
@@ -74,7 +75,7 @@ body
 }
 .menu
 {
-    background-color: #9A7E6F;
+    background-color: #dcac53;
     width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -85,7 +86,9 @@ body
 }
 .radio
 {
+    color: white;
     cursor: pointer;
+    accent-color: #9A7E6F;
 }
 .metodos-1
 {
@@ -96,6 +99,7 @@ body
     justify-content: center; 
     border-color: black;
     border-style: inset;
+    border-radius: 20px;
 }
 .metodos-2
 {
@@ -106,6 +110,8 @@ body
     justify-content: center;
     border-color: black;
     border-style: inset;
+    border-radius: 20px;
+
 }
 .intervalo
 {
@@ -120,6 +126,7 @@ body
 }
 .ecuaciones
 {
+    cursor: pointer;
     display: flex;
     padding: 40px;
 }
@@ -131,6 +138,10 @@ body
 {
     border-radius: 10px;
     background-color: aliceblue;
+}
+.tabla-jacobi{
+    border: 1px solid white;
+    border-collapse: collapse;
 }
 .salida
 {

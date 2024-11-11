@@ -93,19 +93,27 @@
             <div class="menu" align="center">
                 <h2>Menú</h2>
                 <h3>Solución Numérica de Ecuaciones de una sola variable</h3>
-                <div align="left">
+                <div align="center">
                     <br>
                     <br>
-                    <label for="falsa-posicion" class="radio">FALSA POSICION</label>
-                    <input type="radio" id="falsa-posicion" name="enl">
+                    <table border="0" cellspacing="0" width="600px">
+                        <tr>
+                            <td>
+                                <label for="falsa-posicion" class="radio">TARTAGLIA</label>
+                                <input type="radio" id="falsa-posicion" name="enl">     
+                            </td>
+                            <td>
+                                <label for="newton" class="radio">NEWTON</label>
+                                <input type="radio" id="newton" name="enl">
+                            </td>
+                            <td>
+                                <label for="secante" class="radio">SECANTE</label>
+                                <input type="radio" id="secante" name="enl">
+                            </td>
+                        </tr>
+                    </table>   
                     <br>
-                    <br>
-                    <label for="newton" class="radio">NEWTON</label>
-                    <input type="radio" id="newton" name="enl">
-                    <br>
-                    <br>
-                    <label for="secante" class="radio">SECANTE</label>
-                    <input type="radio" id="secante" name="enl">
+                    <br>                                                                        
                 </div>
                 <br>
                 <br>
@@ -300,19 +308,19 @@
             <div class="metodos-2">
                 <h2>GAUSS-JORDAN</h2>
                 <div align="justify">
-                    <p>EJEMPLO: Ingresa el orden de la matriz y el valor de los coeficientes:</p>            
+                    <p>Ingresa el orden de la matriz y el valor de los coeficientes:</p>            
                 </div>
                 <label for="orden-1">Orden de  la Matiz: </label>
                 <input type="text" id="orden-1" class="inter">
                 <br>
                 <br>
-                <button id="crear-matriz" class="boton">Crear Mátriz</button>
+                <button id="crear-matriz" class="boton-r">Crear Mátriz</button>
                 <br>
                 <br>
                 <div id="matriz-gj"></div>
                 <br>    
                 <section id="section-resolver-gj">
-                    <button id="resolver-gj" class="boton">Resolver</button>
+                    <button id="resolver-gj" class="boton-r">Resolver</button>
                 </section>
                 <br>
                 <br>
@@ -339,8 +347,7 @@
                 <h2>JACOBI</h2>
                 <div align="justify">
                     <p>Instrucciones: Ingresa el orden de la matriz a resolver, escribe los coeficientes de cada variable y oprime resolver.</p>
-                    <p>NOTA: El Método garantizará convergencia a la solución cuando la matriz \(A\) tenga diagonal dominante, osea \(A_{i,i}\geq A_{i,j},     \forall i\neq j\)</p>
-                    <p>Orden:</p>
+                    <p>NOTA: El Método garantizará convergencia a la solución cuando la matriz \(A\) tenga diagonal dominante, osea \(a_{ii}\geq a_{ij}, i\neq j, a\in A\)</p>
                     <div align="center">                            
                         <label for="orden-2">Orden de la Matriz: </label>
                         <input type="text" id="orden-2" class="inter">
@@ -383,8 +390,33 @@
             <div class="metodos-2">
                 <h2>GAUSS SEIDEL</h2>
                 <div align="justify">
-                    <p>EJEMPLO: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>Instrucciones: Ingresa el orden de la matriz, presiona el boton "Crear Matriz" y luego resolver</p>
+                    <p>NOTA: La diagonal debe ser estrictamente dominante:</p> 
+                    <div align="center"> 
+                        \(|a_{ii}| \geq \sum_{j \neq i}^{n}|a_{ij}|, a\in A \)
+                        <br>
+                        <br>
+                        <label for="orden-3">Orden de la Matriz: </label>
+                        <input type="text" id="orden-3" class="inter">
+                        <br>
+                        <br>
+                        <button id="crear-matriz-3" class="boton-r">Crear Matriz</button>
+                        <br>
+                        <br>
+                        <div id="matriz-gs">
+                        </div>
+                        <br>
+                        <br>
+                        <section id="section-resolver-gs">
+                            <button id="resolver-gauss-seidel" class="boton-r">Resolver</button>
+                        </section>
+                        <br>
+                        <br>
+                        <div id="r-gs"></div>
+                        <div id="tabla-gauss-seidel"></div>
+                        <br>
+                        <br>
+                    </div>                                    
                 </div>
                 <button id="regresar-g-s-2" class="boton">REGRESAR</button>
                 <button id="salir-7" class="boton">SALIR</button>
