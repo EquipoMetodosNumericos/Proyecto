@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./logo.png" type="image/x-icon">
     <title>METODOS NUMERICOS</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> 
     <script src="./js.js" type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -84,7 +84,7 @@
         <section id="unidad-2-introduccion">
             <div class="introducciones" align="center">
                 <h2>SOLUCION NUMERICA DE ECUACIONES DE UNA SOLA VARIABLE</h2>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <button id="regresar-u-2-1" class="boton">REGRESAR</button>
                 <button id="siguiente-u-2-1" class="boton">SIGUIENTE</button>
             </div>
@@ -93,20 +93,22 @@
             <div class="menu" align="center">
                 <h2>Menú</h2>
                 <h3>Solución Numérica de Ecuaciones de una sola variable</h3>
+                <br>
+                <br>
                 <div align="center">
                     <br>
                     <br>
                     <table border="0" cellspacing="0" width="600px">
                         <tr>
-                            <td>
+                            <td align="center">
                                 <label for="falsa-posicion" class="radio">TARTAGLIA</label>
                                 <input type="radio" id="falsa-posicion" name="enl">     
                             </td>
-                            <td>
+                            <td align="center">
                                 <label for="newton" class="radio">NEWTON</label>
                                 <input type="radio" id="newton" name="enl">
                             </td>
-                            <td>
+                            <td align="center">
                                 <label for="secante" class="radio">SECANTE</label>
                                 <input type="radio" id="secante" name="enl">
                             </td>
@@ -114,7 +116,7 @@
                     </table>   
                     <br>
                     <br>                                                                        
-                </div>
+                </div>              
                 <br>
                 <br>
                 <button id="regresar-u-2-2" class="boton">REGRESAR</button>
@@ -265,7 +267,7 @@
         <section id="unidad-3-introduccion">
             <div class="introducciones">
                 <h2>Solución de sistemas de ecuaciones lineales</h2>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <button id="regresar-u-3-1" class="boton">REGRESAR</button>
                 <button id="siguiente-u-3-1" class="boton">SIGUIENTE</button>
             </div>
@@ -274,19 +276,27 @@
             <div class="menu">
                 <h2>Menú</h2>
                 <h3>Solución de sistemas de ecuaciones lineales</h3>
-                <div align="left">
-                    <br>
-                    <br>
-                    <label for="gauss-jordan" class="radio">GAUSS JORDAN</label>
-                    <input type="radio" id="gauss-jordan" name="enl">
-                    <br>
-                    <label for="jacobi" class="radio">JACOBI</label>
-                    <input type="radio" id="jacobi" name="enl">
-                    <br>
-                    <label for="gauss-seidel" class="radio">GAUSS-SEIDEL</label>
-                    <input type="radio" id="gauss-seidel" name="enl">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div align="left" class="m-u-3">         
+                    <div>                                   
+                        <label for="gauss-jordan" class="radio">GAUSS JORDAN</label>
+                        <input type="radio" id="gauss-jordan" name="enl">
+                    </div>                 
+                    <div>
+                        <label for="jacobi" class="radio">JACOBI</label>
+                        <input type="radio" id="jacobi" name="enl">
+                    </div>   
+                    <div>
+                        <label for="gauss-seidel" class="radio">GAUSS-SEIDEL</label>
+                        <input type="radio" id="gauss-seidel" name="enl">
+                    </div>                    
                     <br>
                 </div>
+                <br>
+                <br>
                 <br>
                 <br>
                 <button id="regresar-u-3-2" class="boton">REGRESAR</button>
@@ -437,14 +447,25 @@
             <div class="menu" align="center">
                 <h2>Menú</h2>
                 <h3>Factorización LU y sus aplicaciones</h3>
-                <div align="left">
+                <div align="center">
                     <br>
                     <br>
-                    <label for="crout" class="radio">CROUT</label>
-                    <input type="radio" id="crout" name="enl">
                     <br>
-                    <label for="cholesky" class="radio">CHOLESKY</label>
-                    <input type="radio" id="cholesky" name="enl">
+                    <br>
+                    <table border="0" cellspacing="0" width="600px">
+                        <tr>
+                            <td align="center">
+                                <label for="doolittle" class="radio">DOOLITTLE</label>
+                                <input type="radio" id="doolittle" name="enl">
+                            </td>
+                            <td align="center">
+                                <label for="cholesky" class="radio">CHOLESKY</label>
+                                <input type="radio" id="cholesky" name="enl">
+                            </td>
+                        </tr>
+                    </table>     
+                    <br>
+                    <br>                    
                     <br>                
                 </div>
                 <br>
@@ -453,23 +474,53 @@
                 <button id="siguiente-u-4-2" class="boton">SELECCIONAR</button>
             </div>                    
         </section>
-        <section id="crout-1">
+        <section id="doolittle-1">
             <div class="metodos-1">
-                <h2>CROUT</h2>
+                <h2>DOOLITTLE</h2>
                 <div align="justify">
                     <p>Explicación: </p>
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>
-                <button id="regresar-c" class="boton">REGRESAR</button>
-                <button id="siguiente-c" class="boton">SIGUIENTE</button>
+                <div align="center">
+                    <button id="regresar-c" class="boton">REGRESAR</button>
+                    <button id="siguiente-c" class="boton">SIGUIENTE</button>
+                </div>
             </div>
         </section>
-        <section id="crout-2">
-            <div class="metodos-2">
-                <h2>CROUT</h2>
+        <section id="doolittle-2">
+            <div class="metodos-2" align="center">
+                <h2>Doolitle</h2>
                 <div align="justify">
-                    <p>EJEMPLO: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>instrucciones: Ingresa el orden del la matriz \(A\) y presiona "Crear matriz", luego ingresa el valor de los coeficientes, por último presiona "Resolver". </p>                    
+                    <div align="center"> 
+                        <br>
+                        <br>
+                        <label for="orden-4">Orden de la Matriz: </label>
+                        <input type="text" id="orden-4" class="inter">
+                        <br>
+                        <br>
+                        <button id="crear-matriz-4" class="boton-r">Crear Matriz</button>
+                        <br>
+                        <br>
+                        <div id="matriz-d">
+                        </div>
+                        <br>
+                        <br>
+                        <section id="section-resolver-d">
+                            <button id="resolver-doolittle" class="boton-r">Resolver</button>
+                        </section>
+                        <br>
+                        <div class="LU">
+                            <div id="matriz-l-d"></div>                        
+                            <div id="matriz-u-d"></div>
+                            <div id="vector-z-d"></div>
+                        </div>                    
+                        <br>
+                        <br>
+                        <div id="r-d"></div>
+                        <br>
+                        <br>
+                    </div> 
                 </div>
                 <button id="regresar-c-2" class="boton">REGRESAR</button>
                 <button id="salir-8" class="boton">SALIR</button>
@@ -511,15 +562,26 @@
             <div class="menu" align="center">
                 <h2>Menú</h2>
                 <h3>Cálculo de valores y vectores propios</h3>
+                <br>
+                <br>
+                <br>
+                <br>
                 <div align="left">
-                    <br>
-                    <br>
-                    <label for="potencia" class="radio">POTENCIA</label>
-                    <input type="radio" id="potencia" name="enl">
-                    <br>
-                    <label for="potencia-inversa" class="radio">POTENCIA-INVERSA</label>
-                    <input type="radio" id="potencia-inversa" name="enl">                
+                    <table border="0" cellspacing="0" align="center" width="600px">
+                        <tr>
+                            <td align="center">
+                                <label for="potencia" class="radio">POTENCIA</label>
+                                <input type="radio" id="potencia" name="enl">  
+                            </td>
+                            <td align="center">
+                                <label for="potencia-inversa" class="radio">POTENCIA-INVERSA</label>
+                                <input type="radio" id="potencia-inversa" name="enl">
+                            </td>
+                        </tr>
+                    </table>                                                                                          
                 </div>
+                <br>
+                <br>
                 <br>
                 <br>
                 <button id="regresar-u-5-2" class="boton">REGRESAR</button>

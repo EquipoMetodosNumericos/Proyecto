@@ -24,7 +24,7 @@ body
 .introduccion
 {
     width: 700px;
-    height: 600px;
+    height: 525px;
     background-color: beige;
     justify-content: center;
     margin: 0 auto;
@@ -34,6 +34,7 @@ body
 }
 .menu-principal
 {
+    color: white;
     margin: 0 auto;
     width: 570px;
     background-color:darkseagreen;
@@ -45,6 +46,10 @@ body
 .menu-principal-2
 {
     color: white; 
+}
+.m-u-3{
+    display: flex;
+    justify-content: space-evenly;
 }
 .encabezado
 {
@@ -67,6 +72,7 @@ body
 {
     background-color:lemonchiffon;
     width: 600px;
+    height: 500px;
     margin: 0 auto;
     padding: 20px;
     border-color: black;
@@ -77,6 +83,7 @@ body
 {
     background-color: #dcac53;
     width: 600px;
+    height: 350px;
     margin: 0 auto;
     padding: 20px;
     padding-left: 30px;
@@ -142,6 +149,10 @@ body
 .tabla-jacobi{
     border: 1px solid white;
     border-collapse: collapse;
+}
+.LU{
+    display: flex;
+    justify-content: center;
 }
 .salida
 {

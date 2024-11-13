@@ -17,6 +17,7 @@ function iniciarPrograma()
     document.getElementById('section-resolver-gj').style.display='none';
     document.getElementById('section-resolver-j').style.display='none';           
     document.getElementById('section-resolver-gs').style.display='none'; 
+    document.getElementById('section-resolver-d').style.display='none'; 
     document.getElementById('portada').style.display='block';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'
@@ -40,8 +41,8 @@ function iniciarPrograma()
     document.getElementById('gauss-seidel-2').style.display='none';
     document.getElementById('unidad-4-introduccion').style.display='none';
     document.getElementById('unidad-4-menu').style.display='none';
-    document.getElementById('crout-1').style.display='none';
-    document.getElementById('crout-2').style.display='none';
+    document.getElementById('doolittle-1').style.display='none';
+    document.getElementById('doolittle-2').style.display='none';
     document.getElementById('cholesky-1').style.display='none';
     document.getElementById('cholesky-2').style.display='none';
     document.getElementById('unidad-5-introduccion').style.display='none';
@@ -144,6 +145,15 @@ function iniciarPrograma()
     //Resolver Gauss-Seidel
     botonResolverGS = document.getElementById('resolver-gauss-seidel');
     botonResolverGS.addEventListener('click',resolverGS);
+    //RESOLUCION UNIDAD IV
+    //Crear matriz Doolittle
+    let botonCrearMatriz4 = document.getElementById('crear-matriz-4');
+    botonCrearMatriz4.addEventListener('click', function(){
+        crearMatriz(4);
+    }); 
+    //Resolver Doolittle
+    let botonResolverD = document.getElementById('resolver-doolittle');
+    botonResolverD.addEventListener('click',resolverD);
 }
 //SELECCION UNIDAD 
 function seleccionarUnidad()
@@ -422,13 +432,13 @@ function seleccionarU3(){
 }
 //SELECCION UNIDAD 4
 function seleccionarU4(){
-    let inputCrout = document.getElementById('crout');
+    let inputdoolittle = document.getElementById('doolittle');
     let inputCholesky = document.getElementById('cholesky');
 
-    if(inputCrout.checked){
-        let a = document.getElementById('crout-1');
+    if(inputdoolittle.checked){
+        let a = document.getElementById('doolittle-1');
         let b = document.getElementById('unidad-4-menu');
-        let c = document.getElementById('crout-2');
+        let c = document.getElementById('doolittle-2');
 
         a.style.display = 'block'
         b.style.display = 'none'
@@ -802,6 +812,7 @@ function crearMatriz(ord){
     document.getElementById('section-resolver-gj').style.display='block';
     document.getElementById('section-resolver-j').style.display='block';
     document.getElementById('section-resolver-gs').style.display='block';
+    document.getElementById('section-resolver-d').style.display='block';
 
     let n = parseInt(document.getElementById(`orden-${ord}`).value);
 
@@ -820,9 +831,13 @@ function crearMatriz(ord){
         matriz = document.getElementById('matriz-j');
         ind = 'j';
     }
-    else{
+    else if(ord==3){
         matriz = document.getElementById('matriz-gs');
         ind = 'gs';
+    }
+    else if(ord==4){
+        matriz = document.getElementById('matriz-d');
+        ind = 'd';
     }
     //Creación de la tabla que sobreescribirá el div en el doc
     let table = ''; 
@@ -857,9 +872,12 @@ function crearMatriz(ord){
         }
         table += '</tr>';
     }
+    //Si el centinela resulta falso, no se mostrará el boton resolver
     if(cen==false){
         document.getElementById('section-resolver-gj').style.display='none';
         document.getElementById('section-resolver-j').style.display='none';
+        document.getElementById('section-resolver-gs').style.display='none';
+        document.getElementById('section-resolver-d').style.display='none';
     }
     table += '</table>';
     matriz.innerHTML = table; // Insertar la tabla en el div
@@ -1088,6 +1106,150 @@ function resolverGS(){
         MathJax.typeset();
     }
 }
+//UNIDAD IV
+//Resolver Doolittle
+function resolverD(){
+    //Leer Matriz A del documento
+    let n = parseInt(document.getElementById('orden-4').value);
+    let cen = true;
+    let matriz = [];
+    for(let i=0;i<n;i++){
+        matriz[i]=[];
+        for(let j=0;j<n;j++){
+            let value = parseInt(document.getElementById(`matriz-${i}-${j}-d`).value);
+            if(value==null){
+                cen = false;
+                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                break;
+            }
+            else{
+                matriz[i][j] = value;
+            }
+        }
+    }
+    //Factorización LU Doolittle l_kk = 1
+    let matrizL = [];
+    let matrizU = [];
+    for (let i = 0; i < n; i++) {
+        matrizL [i] = [];
+        matrizU[i] = []
+        for (let j = 0; j < n; j++) {
+            if(i==j){
+                matrizL[i][j] = 1;
+            }
+            else{
+                matrizL[i][j] = 0;
+            }
+            matrizU[i][j] = 0;
+        }
+    }
+    for(let k=0;k<n;k++){
+        let sum=0;
+        for(let s=0;s<k;s++){
+            sum += matrizL[k][s]*matrizU[s][k];
+        }
+        matrizU[k][k] = matriz[k][k]-sum;
+        for(j=k+1;j<n;j++){
+            let sum2 = 0;
+            for(let s=0;s<k;s++){
+                sum2 += matrizL[k][s] * matrizU[s][j];
+            }
+            matrizU[k][j] = (matriz[k][j]-sum2)/matrizL[k][k];
+        }
+        for(i=k+1;i<n;i++){
+            let sum3 = 0;
+            for(s=0;s<k;s++){
+                sum3 += matrizL[i][s] * matrizU[s][k];
+            }
+            matrizL[i][k] = (matriz[i][k]-sum3)/matrizU[k][k];
+        }
+    }
+    //Calculo del vector solución 
+    //Lz=b
+    let matrizLzb = [];
+    let z = [];
+    for (let i = 0; i < n; i++) {
+        matrizLzb[i] = [];
+        for (let j = 0; j < n+1; j++) {
+            if(j!=n){
+                matrizLzb[i][j] = matrizL[i][j];
+            }
+            else{
+                matrizLzb[i][j] = parseInt(document.getElementById(`matriz-${i}-${n}-d`).value);
+            }
+        }
+    }
+    //Sustitución Progresiva
+    let suma=0;
+    z[0]=matrizLzb[0][n]/matrizLzb[0][0];
+    for(i=0;i<n;i++){
+        suma=0;
+        let b = matrizLzb[i][n];
+        for (let j = 0; j < i; j++) {
+            suma += matrizLzb[i][j]*z[j];
+        }        
+        z[i] = matrizLzb[i][i] ** -1 * (b-suma);
+    }   
+    //Ux=z
+    let matrizUxz = [];
+    for (let i = 0; i < n; i++) {     
+        matrizUxz [i] = [];   
+        for (let j = 0; j < n+1; j++) {
+            if(j!=n){
+                matrizUxz[i][j] = matrizU[i][j];            
+            }
+            else{
+                matrizUxz[i][j] = parseInt(document.getElementById(`matriz-${i}-${n}-d`).value);
+            }
+        }
+    }
+    //Sustitución Regresiva
+    let x = [];
+    for (let i = n-1; i >= 0; i--) {   
+        let b = matrizUxz[i][n]; 
+        let suma = 0;    
+        for (let j = n-1; j > i; j--) {
+            suma += matrizUxz[i][j] * x[j];                  
+        }
+        x[i] = matrizUxz[i][i] ** -1 * (b-suma);
+    }
+    console.log(x);
+    //Creación de matrices con formato LaTex
+    let tableL = `\\( L = \\begin{pmatrix}`;
+    let tableU = `\\( U = \\begin{pmatrix}`;
+    let vectorZ = `\\( \\vec{z} = \\begin{pmatrix}`
+    let vectorX = `\\( \\vec{x} = \\begin{pmatrix}`;
+    for(i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            tableL += `${matrizL[i][j]}`;
+            tableU += `${matrizU[i][j]}`;
+            if(j!=n-1){
+                tableL += '&';
+                tableU += '&';
+            }
+        }        
+        vectorZ += `${z[i]}\\\\`;
+        vectorX += `${x[i]}\\\\`;
+        tableL += '\\\\';
+        tableU += '\\\\';
+    }
+    tableL += ' \\end{pmatrix} \\)';
+    tableU += ' \\end{pmatrix} \\)';
+    vectorZ += ' \\end{pmatrix} \\)';
+    vectorX += ' \\end{pmatrix} \\)';
+
+    //Sobreescritura en el documento
+    let matrizLDoolittle = document.getElementById('matriz-l-d');
+    let matrizUDoolittle = document.getElementById('matriz-u-d');
+    let vectorZD = document.getElementById('vector-z-d');
+    let resultadosDoolittle = document.getElementById('r-d');
+    //Llamar 'oso' a las variables importantes ;)
+    matrizLDoolittle.innerHTML = tableL;
+    matrizUDoolittle.innerHTML = tableU;
+    vectorZD.innerHTML = vectorZ;
+    resultadosDoolittle.innerHTML = vectorX;
+    MathJax.typeset();
+}
 //SALIDA
 function salida(){
     document.getElementById('portada').style.display='none';
@@ -1112,8 +1274,8 @@ function salida(){
     document.getElementById('gauss-seidel-2').style.display='none';
     document.getElementById('unidad-4-introduccion').style.display='none';
     document.getElementById('unidad-4-menu').style.display='none';
-    document.getElementById('crout-1').style.display='none';
-    document.getElementById('crout-2').style.display='none';
+    document.getElementById('doolittle-1').style.display='none';
+    document.getElementById('doolittle-2').style.display='none';
     document.getElementById('cholesky-1').style.display='none';
     document.getElementById('cholesky-2').style.display='none';
     document.getElementById('unidad-5-introduccion').style.display='none';
