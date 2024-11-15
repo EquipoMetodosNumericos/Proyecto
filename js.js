@@ -18,6 +18,7 @@ function iniciarPrograma()
     document.getElementById('section-resolver-j').style.display='none';           
     document.getElementById('section-resolver-gs').style.display='none'; 
     document.getElementById('section-resolver-d').style.display='none'; 
+    document.getElementById('section-resolver-c').style.display='none'; 
     document.getElementById('portada').style.display='block';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'
@@ -154,6 +155,14 @@ function iniciarPrograma()
     //Resolver Doolittle
     let botonResolverD = document.getElementById('resolver-doolittle');
     botonResolverD.addEventListener('click',resolverD);
+    //Crear matriz Cholesky
+    let botonCrearMatriz5 = document.getElementById('crear-matriz-5');
+    botonCrearMatriz5.addEventListener('click', function(){
+        crearMatriz(5);
+    }); 
+    //Resolver Cholesky
+    let botonResolverC = document.getElementById('resolver-cholesky');
+    botonResolverC.addEventListener('click',resolverC);
 }
 //SELECCION UNIDAD 
 function seleccionarUnidad()
@@ -813,6 +822,7 @@ function crearMatriz(ord){
     document.getElementById('section-resolver-j').style.display='block';
     document.getElementById('section-resolver-gs').style.display='block';
     document.getElementById('section-resolver-d').style.display='block';
+    document.getElementById('section-resolver-c').style.display='block';
 
     let n = parseInt(document.getElementById(`orden-${ord}`).value);
 
@@ -838,6 +848,10 @@ function crearMatriz(ord){
     else if(ord==4){
         matriz = document.getElementById('matriz-d');
         ind = 'd';
+    }
+    else if(ord==5){
+        matriz = document.getElementById('matriz-c');
+        ind = 'c';
     }
     //Creación de la tabla que sobreescribirá el div en el doc
     let table = ''; 
@@ -878,6 +892,7 @@ function crearMatriz(ord){
         document.getElementById('section-resolver-j').style.display='none';
         document.getElementById('section-resolver-gs').style.display='none';
         document.getElementById('section-resolver-d').style.display='none';
+        document.getElementById('section-resolver-c').style.display='none';
     }
     table += '</table>';
     matriz.innerHTML = table; // Insertar la tabla en el div
@@ -1213,7 +1228,6 @@ function resolverD(){
         }
         x[i] = matrizUxz[i][i] ** -1 * (b-suma);
     }
-    console.log(x);
     //Creación de matrices con formato LaTex
     let tableL = `\\( L = \\begin{pmatrix}`;
     let tableU = `\\( U = \\begin{pmatrix}`;
@@ -1249,6 +1263,180 @@ function resolverD(){
     vectorZD.innerHTML = vectorZ;
     resultadosDoolittle.innerHTML = vectorX;
     MathJax.typeset();
+}
+function resolverC(){
+    //Leer Matriz A del documento
+    let n = parseInt(document.getElementById('orden-5').value);
+    let cen = true;
+    let matriz = [];
+    for(let i=0;i<n;i++){
+        matriz[i]=[];
+        for(let j=0;j<n;j++){
+            let value = parseInt(document.getElementById(`matriz-${i}-${j}-c`).value);
+            if(value==null){
+                cen = false;
+                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                break;
+            }
+            else{
+                matriz[i][j] = value;
+            }
+        }
+    }
+    //Verificar condiciones
+    //Simetrica
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if(i!=j){
+                if (matriz[i][j]!=matriz[j][i]) {
+                    cen = false;
+                    alert("La matriz no es simétrica");
+                    break;
+                }
+            }               
+        }    
+    }
+    //Definida positiva
+    // Verificar el criterio de Sylvester
+    for (let k = 1; k <= n; k++) {
+        const subMatriz = matriz.slice(0, k).map(row => row.slice(0, k));
+        if (determinante(subMatriz) <= 0) {
+            cen = false;
+            alert('La matriz no es definida positiva');
+        }
+    }
+    if(cen){
+        //Inicializar L y U
+        let L = [];
+        let U = [];
+        for (let i = 0; i < n; i++) {
+            L[i] = [];
+            U[i] = [];
+            for (let j = 0; j < n; j++) {
+                L[i][j] = 0;
+                U[i][j] = 0;
+            }            
+        }
+        //Algoritmo Cholesky
+        let sum1 = 0;
+        let sum2 = 0;
+        for (let k = 0; k < n; k++) {
+            sum1 = 0;
+            sum2 = 0;   
+            for (let s = 0; s < k; s++) {
+            sum1 += L[k][s] ** 2;
+            }
+            L[k][k] = Math.sqrt(matriz[k][k] - sum1); 
+            for (let i = k+1; i < n; i++) { 
+                for (let s = 0; s < k; s++) {
+                    sum2 += L[i][s]*L[k][s];
+                }
+                L[i][k] = (matriz[i][k]-sum2)/L[k][k];  
+            }
+        }        
+        //Calcular U
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                U[i][j] = L[j][i];   
+            }            
+        }
+        //Calculo del vector solución 
+        //Lz=b
+        let matrizLzb = [];
+        let z = [];
+        for (let i = 0; i < n; i++) {
+            matrizLzb[i] = [];
+            for (let j = 0; j < n+1; j++) {
+                if(j!=n){
+                    matrizLzb[i][j] = L[i][j];
+                }
+                else{
+                    matrizLzb[i][j] = parseInt(document.getElementById(`matriz-${i}-${n}-c`).value);
+                }
+            }
+        }
+        //Sustitución Progresiva
+        let suma=0;
+        z[0]=matrizLzb[0][n]/matrizLzb[0][0];
+        for(i=0;i<n;i++){
+            suma=0;
+            let b = matrizLzb[i][n];
+            for (let j = 0; j < i; j++) {
+                suma += matrizLzb[i][j]*z[j];
+            }        
+            z[i] = matrizLzb[i][i] ** -1 * (b-suma);
+        }   
+        //Ux=z
+        let matrizUxz = [];
+        for (let i = 0; i < n; i++) {     
+            matrizUxz [i] = [];   
+            for (let j = 0; j < n+1; j++) {
+                if(j!=n){
+                    matrizUxz[i][j] = U[i][j];            
+                }
+                else{
+                    matrizUxz[i][j] = z[i];
+                }
+            }
+        }
+        //Sustitución Regresiva
+        let x = [];
+        for (let i = n-1; i >= 0; i--) {   
+            let b = matrizUxz[i][n]; 
+            let suma = 0;    
+            for (let j = n-1; j > i; j--) {
+                suma += matrizUxz[i][j] * x[j];                  
+            }
+            x[i] = matrizUxz[i][i] ** -1 * (b-suma);
+        } 
+        //Creación de L U y vectores con formato LaTex
+        let tableL = `\\(L = \\begin{pmatrix}`;
+        let tableU = `\\(U = \\begin{pmatrix}`;
+        let vectorZ = `\\( \\vec{z} = \\begin{pmatrix}`
+        let vectorX = `\\( \\vec{x} = \\begin{pmatrix}`;
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                tableL += `${(L[i][j].toFixed(4))}`;
+                tableU += `${(U[i][j].toFixed(4))}`;
+                if(j!=n-1){
+                    tableL += '&';
+                    tableU += '&';
+                }
+            }
+            vectorZ += `${(z[i].toFixed(4))}\\\\`;
+            vectorX += `${(x[i]).toFixed(4)}\\\\`;
+            tableL += `\\\\`;
+            tableU += `\\\\`;
+        }
+        tableL += `\\end{pmatrix}\\)`;
+        tableU += `\\end{pmatrix}\\)`;
+        vectorX += `\\end{pmatrix}\\)`;
+        vectorZ += `\\end{pmatrix}\\)`;
+        //Sobreescritura en el documento
+        let matrizLC = document.getElementById('matriz-l-c');
+        let matrizUC = document.getElementById('matriz-u-c');
+        let vectorZC = document.getElementById('vector-z-c');
+        let vectorXC = document.getElementById('r-c');
+
+        matrizLC.innerHTML = tableL;
+        matrizUC.innerHTML = tableU;
+        vectorZC.innerHTML = vectorZ;
+        vectorXC.innerHTML = vectorX;
+        MathJax.typeset();
+    }
+}
+//Determinate de la matriz
+function determinante(matriz) {
+    const n = matriz.length;
+    if (n === 1) return matriz[0][0];
+    if (n === 2) return matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
+
+    let det = 0;
+    for (let j = 0; j < n; j++) {
+        const subMatriz = matriz.slice(1).map(row => row.filter((_, colIndex) => colIndex !== j));
+        det += ((j % 2 === 0 ? 1 : -1) * matriz[0][j] * determinante(subMatriz));
+    }
+    return det;
 }
 //SALIDA
 function salida(){

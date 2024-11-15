@@ -489,7 +489,7 @@
         </section>
         <section id="doolittle-2">
             <div class="metodos-2" align="center">
-                <h2>Doolitle</h2>
+                <h2>DOOLITTLE</h2>
                 <div align="justify">
                     <p>instrucciones: Ingresa el orden del la matriz \(A\) y presiona "Crear matriz", luego ingresa el valor de los coeficientes, por último presiona "Resolver". </p>                    
                     <div align="center"> 
@@ -527,7 +527,7 @@
             </div>         
         </section>
         <section id="cholesky-1">
-            <div class="metodos-1">
+            <div class="metodos-1" align="center">
                 <h2>CHOLESKY</h2>
                 <div align="justify">
                     <p>Explicación: </p>
@@ -538,12 +538,45 @@
             </div>            
         </section>
         <section id="cholesky-2">
-            <div class="metodos-2">
+            <div class="metodos-2" align="center">
                 <h2>CHOLESKY</h2>
                 <div align="justify">
-                    <p>EJEMPLO: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>Instrucciones: Ingresa el orden de la matriz, presiona "Crear Matriz" y luego resolver.</p>
+                    <p>Nota: Para poder aplicar el método será necesario que la matriz cumpla las condiciones:</p>
+                    <ol>
+                        <li>Simétrica: \(A^T = A\)</li>
+                        <li>Definida Positiva: \(\vec{x}^T A \vec{x} > 0\)</li>
+                    </ol>
                 </div>
+                <br>
+                <br>
+                <label for="orden-5">Orden de la Matriz: </label>
+                <input type="text" id="orden-5" class="inter">
+                <br>
+                <br>
+                <button id="crear-matriz-5" class="boton-r">Crear Matriz</button>
+                <br>
+                <br>
+                <div id="matriz-c">
+                </div>
+                <br>
+                <br>
+                <section id="section-resolver-c">
+                    <button id="resolver-cholesky" class="boton-r">Resolver</button>
+                </section>
+                <br>
+                <div class="LU">
+                    <div id="matriz-l-c"></div>                        
+                    <div id="matriz-u-c"></div>
+                </div>                    
+                <br>
+                <br>
+                <div class="LU">
+                    <div id="vector-z-c"></div>
+                    <div id="r-c"></div>
+                </div>                
+                <br>
+                <br>
                 <button id="regresar-csky-2" class="boton">REGRESAR</button>
                 <button id="salir-9" class="boton">SALIR</button>
             </div>            
