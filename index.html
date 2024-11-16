@@ -8,6 +8,8 @@
     <title>METODOS NUMERICOS</title>
     <script src="./js.js" type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.6.0/math.min.js"></script>
+
 </head>
 <body>
     <br>
@@ -38,11 +40,23 @@
         </div>
     </section>
     <section id="introduccion">
-        <div class="introduccion" align="center">
-            <h1>INTRODUCCION</h1>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <button id="regresar" class="boton">REGRESAR</button>
-            <button id="siguiente-2" class="boton">SIGUIENTE</button>
+        <div class="introduccion">
+            <div align="center"><h1>INTRODUCCION</h1></div>   
+            <br>         
+            <p>Los <b>métodos numéricos</b> son técnicas matemáticas que permiten encontrar soluciones aproximadas a problemas matemáticos complejos, que no pueden ser resueltos de forma analítica o exacta. Se utilizan en diversos campos como la ingeniería, la física y la economía.</p>
+            <h3>Aplicaciones de los Métodos Numéricos</h3>
+            <p>Los métodos numéricos se aplican en muchos campos, incluyendo:</p>
+            <ul>
+                <li><strong>Simulación de sistemas físicos:</strong> En la ingeniería, para modelar fenómenos como el flujo de fluidos, la termodinámica, etc.</li>
+                <li><strong>Optimización:</strong> En problemas donde se busca la mejor solución, como en la economía o la gestión de recursos.</li>
+                <li><strong>Modelado matemático:</strong> En biología, química y otros campos para resolver ecuaciones diferenciales y algebraicas.</li>
+            </ul>
+            <h3>Conclusión</h3>
+            <p>Los métodos numéricos son herramientas fundamentales para resolver problemas matemáticos complejos en aplicaciones del mundo real. La elección del método adecuado depende del tipo de problema, la precisión requerida y los recursos computacionales disponibles.</p>
+            <div align="center">
+                <button id="regresar" class="boton">REGRESAR</button>
+                <button id="siguiente-2" class="boton">SIGUIENTE</button>
+            </div>            
         </div>
     </section>
     <section id="menu-principal">
@@ -82,11 +96,40 @@
 
     <div class="unidad-2">
         <section id="unidad-2-introduccion">
-            <div class="introducciones" align="center">
-                <h2>SOLUCION NUMERICA DE ECUACIONES DE UNA SOLA VARIABLE</h2>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <button id="regresar-u-2-1" class="boton">REGRESAR</button>
-                <button id="siguiente-u-2-1" class="boton">SIGUIENTE</button>
+            <div class="introducciones">
+                <div align="center">
+                    <h2>Solución Numérica de Ecuaciones de una Variable</h2>
+                </div>                
+                <p>Los métodos numéricos para ecuaciones de una sola variable son técnicas matemáticas que permiten aproximar las raíces de una ecuación de la forma \( f(x) = 0 \). Estas raíces son los valores de \( x \) que satisfacen la ecuación. Dado que muchas ecuaciones no pueden resolverse de manera exacta, estos métodos son esenciales para encontrar soluciones en aplicaciones prácticas.</p>
+            
+                <h3>Características Generales</h3>
+                <ul>
+                    <li><strong>Aproximación iterativa:</strong> Los métodos numéricos suelen comenzar con una o más suposiciones iniciales y luego refinan estas aproximaciones a través de iteraciones.</li>
+                    <li><strong>Requieren evaluación de la función:</strong> En cada iteración, se evalúa \( f(x) \) y, en algunos casos, su derivada o diferencias entre puntos.</li>
+                    <li><strong>Convergencia:</strong> La velocidad con la que un método se aproxima a la raíz depende del método utilizado y de la cercanía de las suposiciones iniciales a la raíz real.</li>
+                </ul>
+            
+                <h3>Clasificación de los Métodos</h3>
+                <p>Los métodos numéricos para ecuaciones de una variable se pueden clasificar en dos categorías principales:</p>
+                <ul>
+                    <li><strong>Métodos cerrados:</strong> Trabajan en un intervalo cerrado \([a, b]\) donde \( f(a) \cdot f(b) < 0 \). Garantizan la existencia de al menos una raíz en el intervalo si la función es continua. Ejemplo: Método de Bisección.</li>
+                    <li><strong>Métodos abiertos:</strong> No requieren un intervalo inicial, pero dependen de una o más aproximaciones iniciales. Su convergencia depende de la calidad de estas aproximaciones. Ejemplo: Métodos de Newton y de la Secante.</li>
+                </ul>
+            
+                <h3>Importancia</h3>
+                <p>Estos métodos son fundamentales en diversos campos de la ciencia y la ingeniería, ya que permiten resolver ecuaciones que surgen en problemas como:</p>
+                <ul>
+                    <li>El análisis de sistemas dinámicos.</li>
+                    <li>La optimización de recursos en economía.</li>
+                    <li>El diseño de estructuras en ingeniería.</li>
+                    <li>El modelado de fenómenos naturales en física y química.</li>
+                </ul>                        
+                <h3>Conclusión</h3>
+                <p>Los métodos numéricos para ecuaciones de una variable son herramientas esenciales para resolver problemas matemáticos complejos. Aunque tienen limitaciones, su implementación computacional permite abordar problemas que serían intratables mediante métodos analíticos tradicionales.</p>
+                <div align="center">
+                    <button id="regresar-u-2-1" class="boton">REGRESAR</button>
+                    <button id="siguiente-u-2-1" class="boton">SIGUIENTE</button>
+                </div>                
             </div>
         </section>
         <section id="unidad-2-menu">
@@ -137,7 +180,7 @@
         <section id="falsa-posicion-2">
             <div class="metodos-2" align="center">
                 <h2>FALSA POSICIÓN</h2>
-                <p>EJEMPLO: Selecciona la ecuación y el intervalo para resolver con el método de Falsa Posición.</p>
+                <p>Instrucciones: Selecciona la ecuación y el intervalo para resolver con el método de Falsa Posición.</p>
                 <div class="intervalo">
                     <p>Introduce el intervalo: \(x \in \) [</p>
                     <label for="inter-1"></label>
@@ -183,7 +226,7 @@
             <div class="metodos-2" align="center">
                 <h2>NEWTON</h2>
                 <div align="center" >
-                    <p>EJEMPLO: Selecciona la ecuación a resolver y el valor inicial:</p>
+                    <p>Instrucciones: Selecciona la ecuación a resolver y el valor inicial:</p>
                     <div class="intervalo" align="center">                        
                         <p>Valor inicial: </p>
                         <label for="valor-inicial"></label>
@@ -230,7 +273,7 @@
             <div class="metodos-2" align="center">
                 <h2>SECANTE</h2>
                 <div align="center" >
-                    <p>EJEMPLO: Selecciona la ecuación a resolver y el valor inicial:</p>
+                    <p>Instrucciones: Selecciona la ecuación a resolver y el valor inicial:</p>
                     <div class="intervalo" align="center">                        
                         <p>Valor inicial: </p>
                         <label for="valor-inicial-2"></label>
@@ -266,10 +309,43 @@
     <div class="unidad-3" align="center">
         <section id="unidad-3-introduccion">
             <div class="introducciones">
-                <h2>Solución de sistemas de ecuaciones lineales</h2>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <button id="regresar-u-3-1" class="boton">REGRESAR</button>
-                <button id="siguiente-u-3-1" class="boton">SIGUIENTE</button>
+                <div align="center"><h1>Solución de sistemas de ecuaciones lineales</h1></div>                
+                <br>
+                <p>Los sistemas de ecuaciones lineales son conjuntos de ecuaciones de la forma:</p>
+                <p>
+                    \[
+                    A \mathbf{x} = \mathbf{b}
+                    \]
+                    donde:
+                    <ul>
+                        <li>\( A \) es una matriz de coeficientes (\( n \times n \)).</li>
+                        <li>\( \mathbf{x} \) es el vector de incógnitas (\( n \times 1 \)).</li>
+                        <li>\( \mathbf{b} \) es el vector de términos independientes (\( n \times 1 \)).</li>
+                    </ul>
+                </p>
+                <p>Los métodos numéricos para resolver estos sistemas son fundamentales en muchas aplicaciones prácticas donde el número de ecuaciones puede ser muy grande y los métodos analíticos son inviables.</p>
+
+                <h3>Clasificación de los Métodos</h3>
+                <p>Los métodos numéricos para sistemas de ecuaciones lineales se clasifican en:</p>
+                <ul>
+                    <li><strong>Métodos directos:</strong> Encuentran la solución exacta (o con error de redondeo) en un número finito de pasos. Ejemplo: Eliminación de Gauss.</li>
+                    <li><strong>Métodos iterativos:</strong> Encuentran aproximaciones sucesivas a la solución. Son útiles para sistemas grandes y dispersos. Ejemplos: Método de Jacobi, Método de Gauss-Seidel.</li>
+                </ul>
+                <h3>Aplicaciones</h3>
+                <p>Los métodos numéricos para sistemas de ecuaciones lineales se aplican en múltiples áreas, como:</p>
+                <ul>
+                    <li>Análisis estructural en ingeniería.</li>
+                    <li>Modelado de circuitos eléctricos.</li>
+                    <li>Simulación de fluidos en dinámica de fluidos computacional (CFD).</li>
+                    <li>Resolución de problemas de optimización.</li>
+                </ul>
+                <h3>Conclusión</h3>
+                <p>Los métodos numéricos para sistemas de ecuaciones lineales son herramientas esenciales en la resolución de problemas complejos en ciencia e ingeniería. La elección entre métodos directos e iterativos depende del tamaño del sistema, la naturaleza de la matriz \( A \) y los recursos computacionales disponibles.</p>
+                <br>
+                <div align="center">
+                    <button id="regresar-u-3-1" class="boton">REGRESAR</button>
+                    <button id="siguiente-u-3-1" class="boton">SIGUIENTE</button>
+                </div>
             </div>
         </section>
         <section id="unidad-3-menu">
@@ -318,7 +394,8 @@
             <div class="metodos-2">
                 <h2>GAUSS-JORDAN</h2>
                 <div align="justify">
-                    <p>Ingresa el orden de la matriz y el valor de los coeficientes:</p>            
+                    <p>Instrucciones: Ingresa el orden de la matriz, depués oprime "Crear Mátriz" e ingresa el valor de los coeficientes. Por último presiona "Resolver".</p>            
+                    <p>Nota: El valor del elemento Pivote no puede ser 0.</p>
                 </div>
                 <label for="orden-1">Orden de  la Matiz: </label>
                 <input type="text" id="orden-1" class="inter">
@@ -357,7 +434,7 @@
                 <h2>JACOBI</h2>
                 <div align="justify">
                     <p>Instrucciones: Ingresa el orden de la matriz a resolver, escribe los coeficientes de cada variable y oprime resolver.</p>
-                    <p>NOTA: El Método garantizará convergencia a la solución cuando la matriz \(A\) tenga diagonal dominante, osea \(a_{ii}\geq a_{ij}, i\neq j, a\in A\)</p>
+                    <p>Nota: El Método garantizará convergencia a la solución cuando la matriz \(A\) tenga diagonal dominante, osea \(a_{ii}\geq a_{ij}, i\neq j, a\in A\)</p>
                     <div align="center">                            
                         <label for="orden-2">Orden de la Matriz: </label>
                         <input type="text" id="orden-2" class="inter">
@@ -400,8 +477,8 @@
             <div class="metodos-2">
                 <h2>GAUSS SEIDEL</h2>
                 <div align="justify">
-                    <p>Instrucciones: Ingresa el orden de la matriz, presiona el boton "Crear Matriz" y luego resolver</p>
-                    <p>NOTA: La diagonal debe ser estrictamente dominante:</p> 
+                    <p>Instrucciones: Ingresa el orden de la matriz, presiona el boton "Crear Matriz" y luego oprime "Resolver"</p>
+                    <p>Nota: La diagonal debe ser estrictamente dominante:</p> 
                     <div align="center"> 
                         \(|a_{ii}| \geq \sum_{j \neq i}^{n}|a_{ij}|, a\in A \)
                         <br>
@@ -436,11 +513,54 @@
     <!--UNIDAD IV-->
     <div class="unidad-4">
         <section id="unidad-4-introduccion">
-            <div class="introducciones" align="center">
-                <h2>Factorización LU y sus aplicaciones</h2>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <button id="regresar-u-4-1" class="boton">REGRESAR</button>
-                <button id="siguiente-u-4-1" class="boton">SIGUIENTE</button>
+            <div class="introducciones">
+                <div align="center"><h1>Factorización LU y sus Aplicaciones</h1></div>                
+                <p>La factorización LU (o descomposición LU) es una técnica matemática que permite descomponer una matriz cuadrada \( A \) en el producto de dos matrices:</p>
+                <p>
+                    \[
+                    A = L \cdot U
+                    \]
+                    donde:
+                    <ul>
+                        <li>\( L \) es una matriz triangular inferior (con unos en la diagonal principal).</li>
+                        <li>\( U \) es una matriz triangular superior.</li>
+                    </ul>
+                </p>
+                <h3>Características</h3>
+                <ul>
+                    <li>Es aplicable a matrices cuadradas no singulares (\( \det(A) \neq 0 \)).</li>
+                    <li>Puede requerir pivoteo parcial o completo para garantizar estabilidad numérica.</li>
+                    <li>Reduce el costo computacional para sistemas lineales con múltiples vectores independientes \( \mathbf{b} \).</li>
+                </ul>
+                <h3>Proceso de Factorización</h3>
+                <p>La factorización LU se obtiene a través de métodos como la eliminación de Gauss:</p>
+                <ol>
+                    <li>Aplicar operaciones elementales para transformar la matriz \( A \) en una matriz triangular superior \( U \).</li>
+                    <li>Registrar los factores multiplicativos de estas operaciones en una matriz triangular inferior \( L \).</li>
+                </ol>
+                <p>Si se necesita mayor estabilidad numérica, se emplea pivoteo, lo que introduce una matriz de permutación \( P \):</p>
+                <p>
+                    \[
+                    P \cdot A = L \cdot U
+                    \]
+                </p>
+                <h3>Aplicaciones</h3>
+                <p>La factorización LU tiene múltiples aplicaciones en matemáticas aplicadas y ciencias de la computación:</p>
+                <ul>
+                    <li><strong>Resolución de sistemas de ecuaciones lineales:</strong> Para resolver \( A \mathbf{x} = \mathbf{b} \), primero se calcula \( L \cdot U = A \), luego se resuelve:
+                        <ol>
+                            <li>\( L \mathbf{y} = \mathbf{b} \) (sustitución progresiva).</li>
+                            <li>\( U \mathbf{x} = \mathbf{y} \) (sustitución regresiva).</li>
+                        </ol>
+                    </li>
+                    <li><strong>Inversión de matrices:</strong> La factorización LU permite calcular la inversa de \( A \) resolviendo \( A \mathbf{x}_i = \mathbf{e}_i \), donde \( \mathbf{e}_i \) son los vectores de la base canónica.</li>
+                    <li><strong>Análisis numérico:</strong> Optimiza el cálculo para matrices grandes y es un paso clave en algoritmos como los de factorización QR o SVD.</li>
+                </ul>
+                <br>
+                <div align="center">
+                    <button id="regresar-u-4-1" class="boton">REGRESAR</button>
+                    <button id="siguiente-u-4-1" class="boton">SIGUIENTE</button>
+                </div>                
             </div>            
         </section>
         <section id="unidad-4-menu">
@@ -541,7 +661,7 @@
             <div class="metodos-2" align="center">
                 <h2>CHOLESKY</h2>
                 <div align="justify">
-                    <p>Instrucciones: Ingresa el orden de la matriz, presiona "Crear Matriz" y luego resolver.</p>
+                    <p>Instrucciones: Ingresa el orden de la matriz, presiona "Crear Matriz" e ingresa el valor de los ceficientes. Luego oprime "Resolver".</p>
                     <p>Nota: Para poder aplicar el método será necesario que la matriz cumpla las condiciones:</p>
                     <ol>
                         <li>Simétrica: \(A^T = A\)</li>
@@ -584,11 +704,50 @@
     </div>
     <div class="unidad-5">
         <section id="unidad-5-introduccion">
-            <div class="introducciones" align="center">
-                <h2>UNIDAD V. Cálculo de valores y vectores propios</h2>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <button id="regresar-u-5-1" class="boton">REGRESAR</button>
-                <button id="siguiente-u-5-1" class="boton">SIGUIENTE</button>
+            <div class="introducciones">
+                <div align="center"><h1>Cálculo de Valores y Vectores Propios</h1></div>                
+                <p>Los valores propios y vectores propios son conceptos fundamentales en álgebra lineal y tienen aplicaciones extensas en diversas disciplinas, como física, economía, ingeniería y ciencias de datos. Para una matriz cuadrada \( A \), un valor propio \( \lambda \) y un vector propio \( \mathbf{v} \) satisfacen la ecuación:</p>
+                <p>
+                    \[
+                    A \mathbf{v} = \lambda \mathbf{v}
+                    \]
+                    donde:
+                    <ul>
+                        <li>\( \lambda \) es un escalar, llamado valor propio.</li>
+                        <li>\( \mathbf{v} \) es un vector no nulo, llamado vector propio.</li>
+                    </ul>
+                </p>
+
+                <h3>Cálculo de Valores Propios</h3>
+                <p>Para encontrar los valores propios de una matriz \( A \), se resuelve el problema característico:</p>
+                <p>
+                    \[
+                    \det(A - \lambda I) = 0
+                    \]
+                    donde \( I \) es la matriz identidad. Esta ecuación genera un polinomio característico, cuyos raíces son los valores propios de \( A \).
+                </p>
+
+                <h3>Cálculo de Vectores Propios</h3>
+                <p>Una vez que los valores propios \( \lambda \) han sido determinados, los vectores propios se calculan resolviendo el sistema lineal:</p>
+                <p>
+                    \[
+                    (A - \lambda I) \mathbf{v} = 0
+                    \]
+                </p>
+                <p>Este sistema puede tener múltiples soluciones no triviales, lo que implica que los vectores propios asociados a un valor propio forman un subespacio (espacio propio).</p>
+
+                <h3>Aplicaciones</h3>
+                <p>Los valores y vectores propios tienen múltiples aplicaciones prácticas, incluyendo:</p>
+                <ul>
+                    <li><strong>Dinámica de sistemas:</strong> Análisis de estabilidad y oscilaciones en sistemas físicos y económicos.</li>
+                    <li><strong>Reducción de dimensionalidad:</strong> Técnicas como el Análisis de Componentes Principales (PCA) utilizan valores propios para identificar las direcciones de máxima varianza en los datos.</li>
+                    <li><strong>Resolución de ecuaciones diferenciales:</strong> Los valores propios de operadores diferenciales lineales ayudan a determinar soluciones generales.</li>
+                    <li><strong>Similitud matricial:</strong> La diagonalización de matrices simplifica cálculos exponenciales y otras operaciones matriciales.</li>
+                </ul>
+                <div align="center">
+                    <button id="regresar-u-5-1" class="boton">REGRESAR</button>
+                    <button id="siguiente-u-5-1" class="boton">SIGUIENTE</button>
+                </div>                
             </div>            
         </section>
         <section id="unidad-5-menu">
@@ -622,7 +781,7 @@
             </div>                        
         </section>
         <section id="potencia-1">
-            <div class="metodos-1">
+            <div class="metodos-1" align="center">
                 <h2>POTENCIA</h2>
                 <div align="justify">
                     <p>Explicación: </p>
@@ -633,18 +792,44 @@
             </div>            
         </section>
         <section id="potencia-2">
-            <div class="metodos-2">
+            <div class="metodos-2" align="center">
                 <h2>POTENCIA</h2>
                 <div align="justify">
-                    <p>EJEMPLO: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>Instrucciones: Ingresa el orden de la matriz y presiona "Crear Matriz". Luego ingesa el valor de los coeficientes y un vector inicial. El método calculará el valor propio dominante y el vector propio asociado al valor propio dominante.</p>                    
                 </div>
+                <br>
+                <br>
+                <label for="orden-6">Orden de la Matriz: </label>
+                <input type="text" id="orden-6" class="inter">
+                <br>
+                <br>
+                <button id="crear-matriz-6" class="boton-r">Crear Matriz</button>
+                <br>
+                <br>
+                <div id="matriz-p" class="vector"></div>
+                <br>
+                <br>
+                <div id="vector-p" class="vector"></div>
+                <br>
+                <br>
+                <section id="section-resolver-p">
+                    <button id="resolver-potencia" class="boton-r">Resolver</button>
+                </section>
+                <br>
+                <br>
+                <div id="eigenvalor-p"></div>
+                <br>
+                <div id="eigenvector-p"></div>
+                <br>
+                <div id="tabla-p"></div>
+                <br>
+                <br>
                 <button id="regresar-p-2" class="boton">REGRESAR</button>
                 <button id="salir-10" class="boton">SALIR</button>
             </div>            
         </section>
         <section id="potencia-inversa-1">
-            <div class="metodos-1">
+            <div class="metodos-1" align="center">
                 <h2>POTENCIA-INVERSA</h2>
                 <div align="justify">
                     <p>Explicación: </p>
@@ -655,12 +840,38 @@
             </div>            
         </section>
         <section id="potencia-inversa-2">
-            <div class="metodos-2">
+            <div class="metodos-2" align="center">
                 <h2>POTENCIA-INVERSA</h2>
                 <div align="justify">
-                    <p>EJEMPLO: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>Instrucciones: Ingresa el orden de la matriz y presiona "Crear Matriz". Luego ingesa el valor de los coeficientes y un vector inicial. El método calculará el valor propio menor y el vector propio asociado al valor propio menor.</p>                    
                 </div>
+                <br>
+                <br>
+                <label for="orden-7">Orden de la Matriz: </label>
+                <input type="text" id="orden-7" class="inter">
+                <br>
+                <br>
+                <button id="crear-matriz-7" class="boton-r">Crear Matriz</button>
+                <br>
+                <br>
+                <div id="matriz-p-i" class="vector"></div>
+                <br>
+                <br>
+                <div id="vector-p-i" class="vector"></div>
+                <br>
+                <br>
+                <section id="section-resolver-p-i">
+                    <button id="resolver-potencia-inversa" class="boton-r">Resolver</button>
+                </section>
+                <br>
+                <br>
+                <div id="eigenvalor-p-i"></div>
+                <br>
+                <div id="eigenvector-p-i"></div>
+                <br>
+                <div id="tabla-p-i"></div>
+                <br>
+                <br>
                 <button id="regresar-p-i-2" class="boton">REGRESAR</button>
                 <button id="salir-11" class="boton">SALIR</button>
             </div>            

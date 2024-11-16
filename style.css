@@ -24,13 +24,14 @@ body
 .introduccion
 {
     width: 700px;
-    height: 525px;
+    height: 545px;
     background-color: beige;
-    justify-content: center;
+    text-align: justify;
     margin: 0 auto;
     border-radius: 20px;
     border-color: black;
     border-style: inset;
+    padding: 20px;
 }
 .menu-principal
 {
@@ -71,8 +72,10 @@ body
 .introducciones
 {
     background-color:lemonchiffon;
-    width: 600px;
-    height: 500px;
+    font-size: 14px;
+    text-align: justify;
+    width: 650px;
+    height: 800px;
     margin: 0 auto;
     padding: 20px;
     border-color: black;
@@ -153,6 +156,19 @@ body
 .LU{
     display: flex;
     justify-content: center;
+}
+.vector{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.tabla-potencia{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.tabla-potencia th, .tabla-potencia td{
+    padding: 0px;
 }
 .salida
 {

@@ -1,24 +1,21 @@
 function iniciarPrograma()
 {
     //FECHA
-    const date = new Date();
-    
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-
-    let currentDate = `${day}/${month}/${year}`;
-    console.log(currentDate);
-
-    let inputDate = document.getElementById('fecha');
-
-    inputDate.innerHTML = currentDate;
-    //VISIBILIDAD DE SECCIONES ADIOS AMIOGS    
+    const fecha = new Date();
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth() + 1;
+    let anio = fecha.getFullYear();
+    let fechaActual = `${dia}/${mes}/${anio}`;
+    let inputFecha = document.getElementById('fecha');
+    inputFecha.innerHTML = fechaActual;
+    //VISIBILIDAD DE SECCIONES    
     document.getElementById('section-resolver-gj').style.display='none';
     document.getElementById('section-resolver-j').style.display='none';           
     document.getElementById('section-resolver-gs').style.display='none'; 
     document.getElementById('section-resolver-d').style.display='none'; 
     document.getElementById('section-resolver-c').style.display='none'; 
+    document.getElementById('section-resolver-p').style.display='none'; 
+    document.getElementById('section-resolver-p-i').style.display='none'; 
     document.getElementById('portada').style.display='block';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'
@@ -163,6 +160,25 @@ function iniciarPrograma()
     //Resolver Cholesky
     let botonResolverC = document.getElementById('resolver-cholesky');
     botonResolverC.addEventListener('click',resolverC);
+    //RESOLUCION UNIDAD V
+    //Crear matriz Potencia
+    let botonCrearMatriz6 = document.getElementById('crear-matriz-6');
+    botonCrearMatriz6.addEventListener('click',function(){
+        crearMatrizA(6);
+        crearVectorInicial(6);
+    });
+    //Resolver Potencia
+    let botonResolverP = document.getElementById('resolver-potencia');
+    botonResolverP.addEventListener('click',resolverP);
+    //Crear matriz Potencia Inversa
+    let botonCrearMatriz7 = document.getElementById('crear-matriz-7');
+    botonCrearMatriz7.addEventListener('click',function(){
+        crearMatrizA(7);
+        crearVectorInicial(7);
+    });
+    //Resolver Potencia Inversa
+    let botonResolverPI = document.getElementById('resolver-potencia-inversa');
+    botonResolverPI.addEventListener('click',resolverPI);
 }
 //SELECCION UNIDAD 
 function seleccionarUnidad()
@@ -568,12 +584,13 @@ function resolverFP(){
     let inputEcuacion1 = document.getElementById('ecuacion-1-f-p');
     let inputEcuacion2 = document.getElementById('ecuacion-2-f-p');
     let tablaFP = document.getElementById('tabla-f-p');
-    let n
+    let n;
+    let cen = true;
 
     if(inputEcuacion1.checked){
         let table = '<table border="1">'; // Agregar un borde a la tabla
         table += '<thead><tr><th>n</th><th>a</th><th>b</th><th>c</th><th>fa</th><th>fb</th><th>fc</th></tr></thead>'; // Encabezados de la tabla
-        table += '<tbody>'; // Cuerpo de la tabla
+        table += '<tbody>'; 
 
         let c;
         let fc;
@@ -582,75 +599,67 @@ function resolverFP(){
         do {
             table += '<tr>';
             
-            let fa = a * Math.exp(a) - a**3 - 3; // Cálculo de fa
-            let fb = b * Math.exp(b) - b**3 - 3; // Cálculo de fb
-            c = a - fa * ((a - b) / (fa - fb)); // Cálculo de c
-            fc = c * Math.exp(c) - c**3 - 3; // Cálculo de fc 
-        
-            // Actualizar a y b según las condiciones
+            let fa = a * Math.exp(a) - a**3 - 3; 
+            let fb = b * Math.exp(b) - b**3 - 3; 
+            c = a - fa * ((a - b) / (fa - fb)); 
+            fc = c * Math.exp(c) - c**3 - 3; 
             if (fa * fc > 0) {
                 a = c; // Si fa y fc tienen el mismo signo, actualiza 'a'
             } else {
                 b = c; // Si fa y fc tienen signos opuestos, actualiza 'b'
             }
-
             // Agregar los valores a la tabla
-            table += `<td>${n}</td>`; // Iteración
-            table += `<td>${a.toFixed(4)}</td>`; // Valor de a
-            table += `<td>${b.toFixed(4)}</td>`; // Valor de b
-            table += `<td>${c.toFixed(4)}</td>`; // Valor de c
-            table += `<td>${fa.toFixed(4)}</td>`; // Valor de fa
-            table += `<td>${fb.toFixed(4)}</td>`; // Valor de fb
-            table += `<td>${fc.toFixed(4)}</td>`; // Valor de fc
+            table += `<td>${n}</td>`; 
+            table += `<td>${a.toFixed(4)}</td>`; 
+            table += `<td>${b.toFixed(4)}</td>`; 
+            table += `<td>${c.toFixed(4)}</td>`; 
+            table += `<td>${fa.toFixed(4)}</td>`; 
+            table += `<td>${fb.toFixed(4)}</td>`; 
+            table += `<td>${fc.toFixed(4)}</td>`; 
             table += '</tr>';
-            
-            n++; // Incrementar el contador de iteraciones
+            n++;
             if(n>100)
             {
                 break;
             }
 
-        } while (Math.abs(fc) > 0.0001); // Salir cuando fc tenga 4 decimales correctos
-
+        } while (Math.abs(fc) > 0.0001); 
         if(n>100)
         {
             alert('El intervalo no es adecuado');
+            cen = false;
         }
-
-        table += '</tbody></table>'; // Cerrar las etiquetas tbody y table
-        tablaFP.innerHTML = table; // Asignar el HTML de la tabla al elemento
-        document.getElementById('sol-f-p').innerHTML = c.toFixed(4); // Mostrar la solución final
-
-        document.getElementById('solucion-fp').style.display = 'block'
+        if(cen){
+            table += '</tbody></table>'; 
+            tablaFP.innerHTML = table; 
+            document.getElementById('sol-f-p').innerHTML = c.toFixed(4); 
+            document.getElementById('solucion-fp').style.display = 'block'
+        }        
     }
     else if(inputEcuacion2.checked)
     {
-        let table = '<table border="1">'; // Agregar un borde a la tabla
-        table += '<thead><tr><th>n</th><th>a</th><th>b</th><th>c</th><th>fa</th><th>fb</th><th>fc</th></tr></thead>'; // Encabezados de la tabla
-        table += '<tbody>'; // Cuerpo de la tabla
+        let table = '<table border="1">'; 
+        table += '<thead><tr><th>n</th><th>a</th><th>b</th><th>c</th><th>fa</th><th>fb</th><th>fc</th></tr></thead>'; 
+        table += '<tbody>'; 
         let c;
         let fc;
         let n=1;
         do
         {
             table += '<tr>'
-            
-            let fa = a**2 - Math.exp(a) - 3 * a + 2; // Cálculo de fa
-            let fb = b**2 - Math.exp(b) - 3 * b + 2; // Cálculo de fb
-            c = a - fa * ((a - b) / (fa - fb)); // Cálculo de c
-            fc = c**2 - Math.exp(c) - 3 * c + 2; // Cálculo de fc
-        
-            // Actualizar a y b según las condiciones
+            let fa = a**2 - Math.exp(a) - 3 * a + 2; 
+            let fb = b**2 - Math.exp(b) - 3 * b + 2; 
+            c = a - fa * ((a - b) / (fa - fb)); // 
+            fc = c**2 - Math.exp(c) - 3 * c + 2; // 
             if (fa * fc > 0) {
                 a = c; // Si fa y fc tienen el mismo signo, actualiza 'a'
             }
             if (fb * fc > 0) {
                 b = c; // Si fb y fc tienen el mismo signo, actualiza 'b'
             }
-            
             // Agregar los valores a la tabla
             table += `<td>${n}</td>`
-            table += `<td>${a.toFixed(4)}</td>`; // Usar toFixed para limitar los decimales
+            table += `<td>${a.toFixed(4)}</td>`; 
             table += `<td>${b.toFixed(4)}</td>`;
             table += `<td>${c.toFixed(4)}</td>`;
             table += `<td>${fa.toFixed(4)}</td>`;
@@ -658,10 +667,10 @@ function resolverFP(){
             table += `<td>${fc.toFixed(4)}</td>`;
             table += '</tr>';
             n++;
-        } while (Math.abs(fc)>=0.0001); // Cambiar la condición de salida según lo que necesites
+        } while (Math.abs(fc)>=0.0001);
         
-        table += '</tbody></table>'; // Cerrar las etiquetas tbody y table
-        tablaFP.innerHTML = table; // Asignar el HTML de la tabla al elemento
+        table += '</tbody></table>'; 
+        tablaFP.innerHTML = table; 
         document.getElementById('sol-f-p').innerHTML = c.toFixed(4);
 
         document.getElementById('solucion-fp').style.display='block';
@@ -823,14 +832,7 @@ function crearMatriz(ord){
     document.getElementById('section-resolver-gs').style.display='block';
     document.getElementById('section-resolver-d').style.display='block';
     document.getElementById('section-resolver-c').style.display='block';
-
     let n = parseInt(document.getElementById(`orden-${ord}`).value);
-
-    let cen=true;
-    if(n<1){
-        cen=false;
-        alert('El valor de la matriz es inválido, Gilberto')
-    }
     let matriz;
     let ind;
     if(ord==1){
@@ -856,36 +858,34 @@ function crearMatriz(ord){
     //Creación de la tabla que sobreescribirá el div en el doc
     let table = ''; 
     table += '<table border="0">'; 
-    for (let i = 0; i < n; i++) {
-        table += '<tr>';
-        for (let j = 0; j < n+1; j++) {
-            if(n>10){
-                alert('El valor de la matriz es inválido, Gilberto');
-                cen = false;
-                break;
-            }        
-            let sg = "";
-            let vr='';                
-            if(j==n){
-                sg = '=';
-                vr = ` `;                    
-            }                
-            else{
-                sg='+'
-                vr=`\\(x_${j+1}\\)`;                    
-            }
-            if(j==0){
-                sg='';
-            }
-            table += `<td>${sg}<label for="matriz-${i}-${j}-${ind}"></label> <input type="text" id="matriz-${i}-${j}-${ind}" placeholder="a${i+1},${j+1}" class="inter">${vr}</td>`;
-            sg = '';
-            vr='';
-        }
-        if(cen==false){
-            break;
-        }
-        table += '</tr>';
+    let cen=true;
+    if(n<1||n>10){
+        cen=false;
+        alert('El valor de la matriz es inválido, Gilberto')
     }
+    if(cen){
+        for (let i = 0; i < n; i++) {
+            table += '<tr>';
+            for (let j = 0; j < n+1; j++) { 
+                let sg = "";
+                let vr='';                
+                if(j==n){
+                    sg = '=';
+                    vr = ` `;                    
+                }                
+                else{
+                    sg='+'
+                    vr=`\\(x_${j+1}\\)`;                    
+                }
+                if(j==0){
+                    sg='';
+                }
+                table += `<td>${sg}<label for="matriz-${i}-${j}-${ind}"></label> <input type="text" id="matriz-${i}-${j}-${ind}" placeholder="a${i+1},${j+1}" class="inter">${vr}</td>`;
+            }
+            table += '</tr>';
+        }
+    }
+    table += '</table>';
     //Si el centinela resulta falso, no se mostrará el boton resolver
     if(cen==false){
         document.getElementById('section-resolver-gj').style.display='none';
@@ -894,34 +894,60 @@ function crearMatriz(ord){
         document.getElementById('section-resolver-d').style.display='none';
         document.getElementById('section-resolver-c').style.display='none';
     }
-    table += '</table>';
-    matriz.innerHTML = table; // Insertar la tabla en el div
+    matriz.innerHTML = table; 
     MathJax.typeset(); //Forzar rendericación con la API
+}
+function crearMatrizA(ord){
+    let n = parseInt(document.getElementById(`orden-${ord}`).value);    
+    let matriz;
+    let ind;
+    if(ord==6){
+        matriz = document.getElementById('matriz-p');
+        ind = 'p';
+    }
+    else if(ord==7){
+        matriz = document.getElementById('matriz-p-i');
+        ind = 'p-i';
+    }
+    let cen=true;
+    if(n<1||n>10){
+        cen=false;
+        alert('El valor de la matriz es inválido, Gilberto')
+    }
+    let table = `\\(A=\\)<table>`;
+    if (cen) {
+        document.getElementById('section-resolver-p').style.display='block'; 
+        document.getElementById('section-resolver-p-i').style.display='block'; 
+        for (let i = 0; i < n; i++) {
+            table += '<tr>';
+            for (let j = 0; j < n; j++) {
+                table += `<td><label for="matriz-${i}-${j}-${ind}"></label><input id="matriz-${i}-${j}-${ind}" class="inter" type="text"></input></td>`;
+            }
+            table += '</tr>';
+        }
+        table += `</table>`;        
+        matriz.innerHTML = table;
+        MathJax.typesetPromise([matriz]);
+    }
 }
 //RESOLVER GJ
 function resolverGJ(){
     let n = parseInt(document.getElementById('orden-1').value);
     var matriz = [];
-    let cen = true; // Centinela
-    // Leer la matriz desde el documento
+    let cen = true; 
     for (let i = 0; i < n && cen; i++) {
         matriz[i] = [];
         for (let j = 0; j < n + 1; j++) {
             let valor = document.getElementById(`matriz-${i}-${j}-gj`).value;
-            
-            // Verificar si el valor está vacío o nulo
-            if (valor === "") {
+                if (valor === "") {
                 alert('El valor de los coeficientes no puede estar vacío, Gilberto');
-                cen = false; // Marcar la matriz como no válida
-                break; // Salir del bucle interior
-            }
-            
-            // Convertir a número e insertar en la matriz
+                cen = false; 
+                break; 
+            }            
             matriz[i][j] = parseInt(valor);
         }
     }
     for (let i = 0; i < n; i++) {
-        // Dividir la fila actual entre el pivote
         let pivote = matriz[i][i];
         if (pivote === 0) {
             alert("El elemento pivote es cero, no se puede emplear el método, Gilberto.");
@@ -929,9 +955,7 @@ function resolverGJ(){
         }
         for (let j = 0; j < n + 1; j++) {
             matriz[i][j] /= pivote;
-        }
-    
-        // Hacer los demás elementos ceros en la columna actual
+        }    
         for (let k = 0; k < n; k++) {
             if (k !== i) {
                 let factor = matriz[k][i];
@@ -955,7 +979,7 @@ function resolverGJ(){
 function resolverJ(){
     let n = parseInt(document.getElementById('orden-2').value);
     var matriz = [];
-    let cen = true; // Centinela
+    let cen = true; 
     // Leer la matriz desde el documento
     for (let i = 0; i < n && cen; i++) {
         matriz[i] = [];
@@ -964,10 +988,9 @@ function resolverJ(){
             // Verificar si el valor está vacío o nulo
             if (valor === "") {
                 alert('El valor de los coeficientes no puede estar vacío, Gilberto');
-                cen = false; // Marcar la matriz como no válida
-                break; // Salir del bucle 
+                cen = false; 
+                break; 
             }            
-            // Convertir a número e insertar en la matriz
             matriz[i][j] = parseInt(valor);
         }
     }   
@@ -978,8 +1001,8 @@ function resolverJ(){
             if(i!=j){
                 if (matriz[i][i]<matriz[i][j]) {
                     alert('La diagonal no es dominante, Gilberto');
-                    cen = false; // Marcar la matriz como no válida
-                    break; // Salir del bucle interior
+                    cen = false; 
+                    break; 
                 }    
             }                                          
         }
@@ -999,13 +1022,13 @@ function resolverJ(){
         do {
             convergencia = true;
             for (let i = 0; i < n; i++) {
-                let x = matriz[i][i] ** -1 * matriz[i][n]; // Reiniciamos x para cada i
+                let x = matriz[i][i] ** -1 * matriz[i][n];
                 for (let j = 0; j < n; j++) {
                     if (i != j) {
                         x += matriz[i][i] ** -1 * (-matriz[i][j] * sol[j]);
                     }
                 }            
-                auxSol[i] = x; // Guardamos el nuevo valor provisional en auxSol
+                auxSol[i] = x; 
             }
             //Creacion de tabla de iteraciones
             iter++;
@@ -1264,6 +1287,7 @@ function resolverD(){
     resultadosDoolittle.innerHTML = vectorX;
     MathJax.typeset();
 }
+//Resolver Cholesky
 function resolverC(){
     //Leer Matriz A del documento
     let n = parseInt(document.getElementById('orden-5').value);
@@ -1291,6 +1315,9 @@ function resolverC(){
                 if (matriz[i][j]!=matriz[j][i]) {
                     cen = false;
                     alert("La matriz no es simétrica");
+                    break;
+                }
+                if(!cen){
                     break;
                 }
             }               
@@ -1438,6 +1465,183 @@ function determinante(matriz) {
     }
     return det;
 }
+//Crear vector Inicial
+function crearVectorInicial(tam){
+    let n = parseInt(document.getElementById(`orden-${tam}`).value);   
+    let ind; 
+    let vector;
+    if(tam==6){
+        vector = document.getElementById('vector-p');
+        ind = 'p';
+    }
+    else if(tam==7) {
+        vector = document.getElementById('vector-p-i');
+        ind = 'p-i'
+    }
+    let table = '\\(x=\\)<table><tr><td>';
+    for (let i = 0; i < n; i++) {
+        table += `<label for="vector-${i}-${ind}"></label><input id="vector-${i}-${ind}" class="inter"></input><br>`;
+    }
+    table += '</td></tr></table>';
+    vector.innerHTML = table;
+    MathJax.typeset();
+}
+//Resolver Potencia
+function resolverP(){
+    //Leer Matriz A del documento
+    let n = parseInt(document.getElementById('orden-6').value);
+    let cen = true;
+    let matriz = [];
+    let x = [];
+    for(let i=0;i<n;i++){
+        matriz[i]=[];
+        let valorX = parseFloat(document.getElementById(`vector-${i}-p`).value);
+        if(valorX == null){
+            alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+            cen = false;
+            break;
+        }
+        else x.push(valorX);
+        for(let j=0;j<n;j++){
+            let value = parseFloat(document.getElementById(`matriz-${i}-${j}-p`).value);
+            if(value == null){
+                cen = false;
+                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                break;
+            }
+            else{
+                matriz[i][j] = value;
+            }
+        }
+    }
+    let auxC = 0;
+    let con = true;
+    let c = 0;
+    let table = '<h2>Tabla Potencia</h2><br><table class="tabla-potencia" border="1" cellspacing="0"> <th>\\(n\\)</th> <th> \\(x_n\\) </th> <th> \\(y_n\\) </th> <th> \\(c_n\\) </th>';
+    let iteraciones=0;
+    if(cen){
+        do{
+            let y = Array(n).fill(0);
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    y[i] += matriz[i][j] * x[j];
+                }            
+            }
+            c = 0;
+            for(i=0;i<n-1;i++){
+                if(Math.abs(y[i])>c) c=y[i];
+            }
+            if(Math.abs(c-auxC)<0.00001){
+                con = false;
+            }
+            auxC = c;
+            for(i=0;i<n;i++) x[i] = c;
+            for (let i = 0; i < n; i++) {
+                x[i] = y[i] / c; 
+            }
+            //Agregar los valores a la tabla
+            table += `<tr><td width="50px">${iteraciones}</td><td width="50px"><table class="tabla-potencia" border="1" cellspacing="0">`;        
+            for (let i = 0; i < n; i++) {
+                table+=`<tr><td>${(x[i]).toFixed(4)}</td></tr>`;
+            }
+            table+='</table></td><td width="50px"><table class="tabla-potencia" border="1" cellspacing="0">';
+            for (let i = 0; i < n; i++) {
+                table += `<tr><td>${(y[i]).toFixed(4)}</td></tr>`;
+            }
+            table += `</table></td><td width="50px">${c.toFixed(4)}</td></tr>`;
+            iteraciones++;
+        }while(con);
+        table+='</table>';
+        let eigen = `<h2>Máximo valor propio</h2><p>\\(\\lambda_{max} = ${c.toFixed(4)}\\)</p>`
+        let eigenV = `\\(\\vec{v}_{\\lambda} = \\begin{pmatrix}`;
+        for(i=0;i<n;i++){
+            eigenV += `${(x[i]).toFixed(4)}`;
+            if(i!=n) eigenV += '\\\\';
+        }
+        eigenV += '\\end{pmatrix}\\)';
+        //Sobreescribir el eigenvalor y eigenvector
+        let eigenP = document.getElementById('eigenvalor-p');
+        let eigenVP = document.getElementById('eigenvector-p');
+        let tablaP = document.getElementById('tabla-p');
+        eigenP.innerHTML = eigen;
+        eigenVP.innerHTML = eigenV;   
+        tablaP.innerHTML = table;     
+        MathJax.typeset();
+    }
+}
+//Resolver Potencia Inversa
+function resolverPI() {
+    // Leer matriz A del documento
+    let n = parseInt(document.getElementById('orden-7').value);
+    let cen = true;
+    let matriz = [];
+    let x = [];
+    for (let i = 0; i < n; i++) {
+        matriz[i] = [];
+        let valorX = parseFloat(document.getElementById(`vector-${i}-p-i`).value);
+        if (isNaN(valorX)) {
+            alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+            cen = false;
+            break;
+        } else {
+            x.push(valorX);
+        }
+        for (let j = 0; j < n; j++) {
+            let value = parseFloat(document.getElementById(`matriz-${i}-${j}-p-i`).value);
+            if (isNaN(value)) {
+                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                cen = false;
+                break;
+            } else {
+                matriz[i][j] = value;
+            }
+        }
+    }
+    if (!cen) return;
+    let matrizInversa = math.inv(matriz); 
+    let auxC = 0;
+    let con = true;
+    let c = 0;
+    let table = '<h2>Tabla Potencia Inversa</h2><br><table class="tabla-potencia" border="1" cellspacing="0"> <th>\\(n\\)</th> <th> \\(x_n\\) </th> <th> \\(y_n\\) </th> <th> \\(c_n\\) </th>';
+    let iteraciones = 0;
+    do {
+        let y = Array(n).fill(0);
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                y[i] += matrizInversa[i][j] * x[j];
+            }
+        }
+        c = Math.max(...y.map(Math.abs));
+        if (Math.abs(c - auxC) < 0.00001) {
+            con = false;
+        }
+        auxC = c;
+        x = y.map(yi => yi / c);
+        table += `<tr><td width="50px">${iteraciones}</td><td width="50px"><table class="tabla-potencia" border="1" cellspacing="0">`;
+        for (let i = 0; i < n; i++) {
+            table += `<tr><td>${x[i].toFixed(4)}</td></tr>`;
+        }
+        table += '</table></td><td width="50px"><table class="tabla-potencia" border="1" cellspacing="0">';
+        for (let i = 0; i < n; i++) {
+            table += `<tr><td>${y[i].toFixed(4)}</td></tr>`;
+        }
+        table += `</table></td><td width="50px">${c.toFixed(4)}</td></tr>`;
+        iteraciones++;
+    } while (con);
+    table += '</table>';
+    let eigen = `<h2>Menor valor propio (en magnitud)</h2><p>\\(\\lambda_{min} \\approx ${c.toFixed(4)}\\)</p>`;
+    let eigenV = `\\(\\vec{v}_{\\lambda} = \\begin{pmatrix}`;
+    for (let i = 0; i < n; i++) {
+        eigenV += `${x[i].toFixed(4)}`;
+        if (i != n - 1) eigenV += '\\\\';
+    }
+    eigenV += '\\end{pmatrix}\\)';
+    // Actualizar el Doc
+    document.getElementById('eigenvalor-p-i').innerHTML = eigen;
+    document.getElementById('eigenvector-p-i').innerHTML = eigenV;
+    document.getElementById('tabla-p-i').innerHTML = table;
+    MathJax.typeset();
+}
 //SALIDA
 function salida(){
     document.getElementById('portada').style.display='none';
@@ -1473,5 +1677,4 @@ function salida(){
     document.getElementById('potencia-inversa-1').style.display='none';
     document.getElementById('potencia-inversa-2').style.display='none';
 }
-
 window.addEventListener('load', iniciarPrograma);
