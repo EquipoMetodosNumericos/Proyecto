@@ -588,8 +588,8 @@ function resolverFP(){
     let cen = true;
 
     if(inputEcuacion1.checked){
-        let table = '<table border="1">'; // Agregar un borde a la tabla
-        table += '<thead><tr><th>n</th><th>a</th><th>b</th><th>c</th><th>fa</th><th>fb</th><th>fc</th></tr></thead>'; // Encabezados de la tabla
+        let table = '<h1>Tabla Falsa Posición</h1><table border="1" class="tabla-metodos">'; 
+        table += '<thead><tr><th width="50px">n</th><th width="50px">a</th><th width="50px">b</th><th width="50px">c</th><th width="50px">fa</th><th width="50px">fb</th><th width="50px">fc</th></tr></thead>'; // Encabezados de la tabla
         table += '<tbody>'; 
 
         let c;
@@ -638,8 +638,8 @@ function resolverFP(){
     }
     else if(inputEcuacion2.checked)
     {
-        let table = '<table border="1">'; 
-        table += '<thead><tr><th>n</th><th>a</th><th>b</th><th>c</th><th>fa</th><th>fb</th><th>fc</th></tr></thead>'; 
+        let table = '<h1>Tabla Falsa Posición</h1><table border="1" class="tabla-metodos">'; 
+        table += '<thead><tr><th width="50px">n</th><th width="50px">a</th><th width="50px">b</th><th width="50px">c</th><th width="50px">fa</th><th width="50px">fb</th><th width="50px">fc</th></tr></thead>'; 
         table += '<tbody>'; 
         let c;
         let fc;
@@ -691,8 +691,8 @@ function resolverN(){
     let inputEcuacion2 = document.getElementById('ecuacion-2-n');
 
     if(inputEcuacion1.checked){
-        let table = '<table border="1">'; // Agregar un borde a la tabla
-        table += '<thead><tr> <th>n</th>  <th>\(x_n\)</th>  <th>\(f(x)\)</th>  <th>\(f´(x)\)</th></tr></thead>'; // Encabezados de la tabla
+        let table = '<h1>Tabla Newton</h1><table border="1" class="tabla-metodos">'; // Agregar un borde a la tabla
+        table += '<thead><tr> <th width="50px"> \\(n\\) </th>  <th width="50px">\\(x_n\\)</th>  <th width="50px">\\(f(x)\\)</th>  <th width="50px">\\(f´(x)\\)</th></tr></thead>'; // Encabezados de la tabla
         table += '<tbody>'; // Cuerpo de la tabla
         do{
             fx = x*Math.sin(x) + 2*x**2-1;
@@ -710,10 +710,11 @@ function resolverN(){
         tablaN.innerHTML=table;    
         document.getElementById('sol-n').innerHTML = x.toFixed(4);
         document.getElementById('solucion-n').style.display = 'block'
+        MathJax.typeset();
     }
     else if(inputEcuacion2.checked){
-        let table = '<table border="1">'; // Agregar un borde a la tabla
-        table += '<thead><tr> <th>n</th>  <th>\(x_n\)</th>  <th>\(f(x)\)</th>  <th>\(f´(x)\)</th></tr></thead>'; // Encabezados de la tabla
+        let table = '<h1>Tabla Newton</h1><table border="1" class="tabla-metodos">'; 
+        table += '<thead><tr> <th width="50px">\\(n\\)</th>  <th width="50px">\\(x_n\\)</th>  <th width="50px">\\(f(x)\\)</th>  <th width="50px">\\(f´(x)\\)</th></tr></thead>'; // Encabezados de la tabla
         table += '<tbody>'; // Cuerpo de la tabla
 
         let n = 1; // Inicializar n
@@ -746,6 +747,7 @@ function resolverN(){
 
         // Mostrar la sección donde está la solución
         document.getElementById('solucion-n').style.display = 'block';
+        MathJax.typeset();
     }
     else{
         alert('Ingresa una solución para resolver');
@@ -764,8 +766,8 @@ function resolverS(){
     let inputEcuacion2 = document.getElementById('ecuacion-2-s');
 
     if(inputEcuacion1.checked){
-        let table = '<table border="1">'; // Agregar un borde a la tabla
-        table += '<thead><tr> <th>n</th>  <th>\(x_n\)</th>  <th>\(f(x)\)</th></tr></thead>'; // Encabezados de la tabla
+        let table = '<h1>Tabla Secante</h1><br><table border="1" class="tabla-metodos">'; // Agregar un borde a la tabla
+        table += '<thead><tr> <th width="80px">n</th>  <th width="80px">\\(x_n\\)</th>  <th width="80px">\\(f(x)\\)</th></tr></thead>'; // Encabezados de la tabla
         table += '<tbody>'; // Cuerpo de la tabla
         fx0 = x0*Math.sin(x0) + 2*x0**2-1; 
         table += `<td>${n}</td>`
@@ -789,11 +791,12 @@ function resolverS(){
         table += '</tbody></table>'; 
         tablaS.innerHTML=table;    
         document.getElementById('sol-s').innerHTML = x.toFixed(4);
-        document.getElementById('solucion-s').style.display = 'block'
+        document.getElementById('solucion-s').style.display = 'block';
+        MathJax.typeset();
     }
     else if(inputEcuacion2.checked){
-        let table = '<table border="1">'; 
-        table += '<thead><tr> <th>n</th>  <th>x_n</th>  <th>f(x)</th></tr></thead>'; 
+        let table = '<h1>Tabla Secante</h1><table border="1" class="tabla-metodos">'; 
+        table += '<thead><tr> <th width="80px">\\(n\\)</th>  <th width="80px">\\(x_n\\)</th>  <th width="80px">\\(f(x)\\)</th></tr></thead>'; 
         table += '<tbody>'; 
     
         fx0 = x0 ** 2 - Math.exp(x0) - 3 * x0 + 2; 
@@ -820,6 +823,7 @@ function resolverS(){
         tablaS.innerHTML = table; 
         document.getElementById('sol-s').innerHTML = x.toFixed(4); 
         document.getElementById('solucion-s').style.display = 'block';
+        MathJax.typeset();
     }
     else{
         alert('Ingresa una ecuación a resolver :)');
@@ -1011,8 +1015,8 @@ function resolverJ(){
         let sol = Array(n).fill(0); 
         let auxSol = Array(n).fill(0); 
         let convergencia;
-        let table = `<h2>Tabla Jacobí</h2><br><table class="tabla-jacobi" border="1"><thead><th>n</th>`;
-        let tablaJacobi = document.getElementById('tabla-jacobi');
+        let table = `<h2>Tabla Jacobí</h2><br><table class="tabla-metodos" border="1"><thead><th>n</th>`;
+        let tablaJacobi = document.getElementById('tabla-metodos');
         let iter=0;
         //Encabezados
         for(i=0;i<n;i++){
@@ -1099,7 +1103,7 @@ function resolverGS(){
     if(cen){
         let sol = Array(n).fill(0); 
         let convergencia;
-        let table = `<h2>Tabla Gauss Seidel</h2><br><table class="tabla-jacobi" border="1"><thead><th>n</th>`;
+        let table = `<h2>Tabla Gauss Seidel</h2><br><table class="tabla-metodos" border="1"><thead><th>n</th>`;
         //Encabezados
         for(i=0;i<n;i++){
             table += `<th>\\( \\mathbf{x_{${i+1}}}\\)</th>`;
@@ -1644,6 +1648,9 @@ function resolverPI() {
 }
 //SALIDA
 function salida(){
+    var audio = document.getElementById('sonido-salida');
+    audio.play();
+    document.getElementById('audio-2').play();
     document.getElementById('portada').style.display='none';
     document.getElementById('introduccion').style.display='none'
     document.getElementById('menu-principal').style.display='none'

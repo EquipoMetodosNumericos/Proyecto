@@ -145,15 +145,15 @@
                         <tr>
                             <td align="center">
                                 <label for="falsa-posicion" class="radio">TARTAGLIA</label>
-                                <input type="radio" id="falsa-posicion" name="enl">     
+                                <input type="radio" id="falsa-posicion" name="enl" class="radio">     
                             </td>
                             <td align="center">
                                 <label for="newton" class="radio">NEWTON</label>
-                                <input type="radio" id="newton" name="enl">
+                                <input type="radio" id="newton" name="enl" class="radio">
                             </td>
                             <td align="center">
                                 <label for="secante" class="radio">SECANTE</label>
-                                <input type="radio" id="secante" name="enl">
+                                <input type="radio" id="secante" name="enl" class="radio">
                             </td>
                         </tr>
                     </table>   
@@ -168,10 +168,31 @@
         </section>
         <section id="falsa-posicion-1">
             <div class="metodos-1" align="center">
-                <h2>FALSA POSICIÓN</h2>
+                <h1>Método de Falsa Posición</h1>
                 <div align="justify">
-                    <p>Explicación</p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>El método de falsa posición es un algoritmo para encontrar raíces de funciones continuas \( f(x) \), basado en la intersección de una línea recta con el eje \( x \). Se utiliza cuando existe un intervalo inicial \([a, b]\) donde \( f(a) \cdot f(b) < 0 \), asegurando la existencia de una raíz.</p>
+                    
+                    <h2>Fórmula</h2>
+                    <p>La aproximación de la raíz \( c \) se calcula como:</p>
+                    <p>
+                        \[
+                        c = b - \frac{f(b)(b - a)}{f(b) - f(a)}
+                        \]
+                    </p>
+
+                    <h2>Pasos</h2>
+                    <ol>
+                        <li>Seleccionar un intervalo \([a, b]\) tal que \( f(a) \cdot f(b) < 0 \).</li>
+                        <li>Calcular \( c \) y evaluar \( f(c) \).</li>
+                        <li>Ajustar el intervalo: si \( f(c) \cdot f(a) < 0 \), reemplazar \( b \) con \( c \); de lo contrario, reemplazar \( a \) con \( c \).</li>
+                        <li>Repetir hasta alcanzar el error deseado.</li>
+                    </ol>
+
+                    <h2>Aplicaciones</h2>
+                    <p>Se utiliza en ingeniería, física y matemáticas para resolver ecuaciones no lineales, siendo más eficiente que el método de bisección en funciones casi lineales.</p>
+
+                    <h2>Ventajas</h2>
+                    <p>Es sencillo, garantiza convergencia y mejora la aproximación con cada iteración. Sin embargo, su convergencia puede ser lenta si la función tiene derivadas pequeñas cerca de los extremos del intervalo.</p>
                 </div>
                 <button id="regresar-u-2-f-p" class="boton">REGRESAR</button>
                 <button id="siguiente-u-2-f-p" class="boton">SIGUIENTE</button>
@@ -213,10 +234,33 @@
         </section>
         <section id="newton-1">
             <div class="metodos-1" align="center">
-                <h2>NEWTON</h2>
+                <h1>Método de Newton</h1>
                 <div align="justify">
-                    <p>Explicación</p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                <p>El método de Newton, también llamado método de Newton-Raphson, es un algoritmo iterativo utilizado para encontrar aproximaciones a las raíces de funciones diferenciables \( f(x) \). Es rápido y eficiente, especialmente para funciones suaves cerca de la raíz.</p>
+
+                <h2>Fórmula</h2>
+                <p>Dado un valor inicial \( x_0 \), las aproximaciones sucesivas se calculan como:</p>
+                <p>
+                    \[
+                    x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+                    \]
+                </p>
+
+                <h2>Pasos</h2>
+                <ol>
+                    <li>Seleccionar un valor inicial \( x_0 \).</li>
+                    <li>Calcular \( x_{n+1} \) usando la fórmula anterior.</li>
+                    <li>Repetir hasta que \( |f(x_{n+1})| \) o la diferencia entre iteraciones sea menor que un umbral predefinido.</li>
+                </ol>
+
+                <h2>Aplicaciones</h2>
+                <p>El método de Newton se utiliza ampliamente en ingeniería, física y matemáticas para resolver ecuaciones no lineales, optimización y problemas de ajuste de curvas.</p>
+
+                <h2>Ventajas</h2>
+                <p>Es rápido y, en general, converge cuadráticamente cerca de la raíz.</p>
+
+                <h2>Limitaciones</h2>
+                <p>Requiere conocer la derivada de \( f(x) \) y puede no converger si el valor inicial está lejos de la raíz o si \( f'(x) = 0 \) en algún punto del proceso.</p>
                 </div>
                 <button id="regresar-u-2-n" class="boton">REGRESAR</button>
                 <button id="siguiente-u-2-n" class="boton">SIGUIENTE</button>
@@ -260,10 +304,39 @@
         </section>
         <section id="secante-1">
             <div class="metodos-1" align="center">
-                <h2>SECANTE</h2>
+                <h1>Método de la Secante</h1>
                 <div align="justify">
-                    <p>Explicación</p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>El método de la secante es un algoritmo iterativo utilizado para encontrar aproximaciones de las raíces de una función \( f(x) \). A diferencia del método de Newton, no requiere calcular derivadas, utilizando en su lugar una aproximación lineal basada en dos puntos.</p>
+                
+                    <h2>Fórmula</h2>
+                    <p>Usando dos valores iniciales \( x_0 \) y \( x_1 \), la siguiente iteración \( x_{n+1} \) se calcula como:</p>
+                    <p>
+                        \[
+                        x_{n+1} = x_n - f(x_n) \cdot \frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}
+                        \]
+                    </p>
+                
+                    <h2>Pasos</h2>
+                    <ol>
+                        <li>Seleccionar dos puntos iniciales \( x_0 \) y \( x_1 \).</li>
+                        <li>Calcular \( x_{n+1} \) usando la fórmula.</li>
+                        <li>Repetir el proceso hasta que \( |f(x_{n+1})| \) sea suficientemente pequeño o la diferencia entre iteraciones sea menor a un valor tolerable.</li>
+                    </ol>
+                
+                    <h2>Ventajas</h2>
+                    <ul>
+                        <li>No requiere derivadas, a diferencia del método de Newton.</li>
+                        <li>Puede converger más rápido que otros métodos como el de bisección.</li>
+                    </ul>
+                
+                    <h2>Limitaciones</h2>
+                    <ul>
+                        <li>No siempre converge si los puntos iniciales no están cerca de la raíz.</li>
+                        <li>Falla si \( f(x_n) - f(x_{n-1}) = 0 \).</li>
+                    </ul>
+                
+                    <h2>Aplicaciones</h2>
+                    <p>El método de la secante se usa ampliamente en ingeniería, física y matemáticas para resolver ecuaciones no lineales cuando el cálculo de derivadas no es práctico o posible.</p>
                 </div>
                 <button id="regresar-u-2-s" class="boton">REGRESAR</button>
                 <button id="siguiente-u-2-s" class="boton">SIGUIENTE</button>
@@ -359,15 +432,15 @@
                 <div align="left" class="m-u-3">         
                     <div>                                   
                         <label for="gauss-jordan" class="radio">GAUSS JORDAN</label>
-                        <input type="radio" id="gauss-jordan" name="enl">
+                        <input type="radio" id="gauss-jordan" name="enl" class="radio">
                     </div>                 
                     <div>
                         <label for="jacobi" class="radio">JACOBI</label>
-                        <input type="radio" id="jacobi" name="enl">
+                        <input type="radio" id="jacobi" name="enl" class="radio">
                     </div>   
                     <div>
                         <label for="gauss-seidel" class="radio">GAUSS-SEIDEL</label>
-                        <input type="radio" id="gauss-seidel" name="enl">
+                        <input type="radio" id="gauss-seidel" name="enl" class="radio">
                     </div>                    
                     <br>
                 </div>
@@ -381,10 +454,32 @@
         </section>
         <section id="gauss-jordan-1">
             <div class="metodos-1">
-                <h2>GAUSS-JORDAN</h2>
+                <h1>Método de Gauss-Jordan</h1>
                 <div align="justify">
-                    <p>Explicación: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>El método de Gauss-Jordan es un procedimiento algebraico utilizado para resolver sistemas de ecuaciones lineales y encontrar la inversa de una matriz. Es una extensión del método de eliminación de Gauss y convierte la matriz aumentada del sistema en su forma reducida escalonada.</p>
+                
+                    <h2>Procedimiento</h2>
+                    <ol>
+                        <li>Construir la matriz aumentada del sistema de ecuaciones.</li>
+                        <li>Usar operaciones elementales de fila (intercambio, multiplicación y suma/resta de filas) para convertir la matriz aumentada en una matriz identidad en el lado izquierdo.</li>
+                        <li>Los valores resultantes en el lado derecho corresponden a las soluciones del sistema.</li>
+                    </ol>
+                
+                    <h2>Ventajas</h2>
+                    <ul>
+                        <li>Proporciona una solución directa al sistema de ecuaciones lineales.</li>
+                        <li>También puede calcular la inversa de una matriz en un solo proceso.</li>
+                    </ul>
+                
+                    <h2>Limitaciones</h2>
+                    <ul>
+                        <li>Es computacionalmente costoso para sistemas grandes.</li>
+                        <li>La precisión puede verse afectada en caso de números muy pequeños o muy grandes.</li>
+                    </ul>
+                
+                    <h2>Aplicaciones</h2>
+                    <p>Se utiliza en álgebra lineal aplicada, ingeniería y ciencias para resolver sistemas de ecuaciones lineales y encontrar matrices inversas en modelos matemáticos y simulaciones.</p>
+                </body>
                 </div>
                 <button id="regresar-g-j" class="boton">REGRESAR</button>
                 <button id="siguiente-g-j" class="boton">SIGUIENTE</button>
@@ -420,10 +515,39 @@
         </section>
         <section id="jacobi-1">
             <div class="metodos-1">
-                <h2>JACOBI</h2>
+                <h1>Método de Jacobi</h1>
                 <div align="justify">
-                    <p>Explicación: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>El método de Jacobi es un algoritmo iterativo utilizado para resolver sistemas de ecuaciones lineales de la forma \( Ax = b \). Es particularmente útil para matrices dispersas y sistemas grandes, siempre que la matriz \( A \) sea diagonalmente dominante o simétrica positiva definida.</p>
+                
+                    <h2>Fórmula</h2>
+                    <p>La fórmula general para actualizar cada componente \( x_i^{(k+1)} \) en la \( k \)-ésima iteración es:</p>
+                    <p>
+                        \[
+                        x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \right)
+                        \]
+                    </p>
+                
+                    <h2>Pasos</h2>
+                    <ol>
+                        <li>Inicializar un vector \( x^{(0)} \) con valores aproximados.</li>
+                        <li>Reemplazar cada \( x_i \) usando la fórmula iterativa.</li>
+                        <li>Repetir hasta que la diferencia entre iteraciones consecutivas sea menor que un valor de tolerancia predefinido.</li>
+                    </ol>
+                
+                    <h2>Ventajas</h2>
+                    <ul>
+                        <li>Sencillo de implementar y adecuado para sistemas dispersos.</li>
+                        <li>Permite paralelismo, ya que cada ecuación se resuelve de forma independiente.</li>
+                    </ul>
+                
+                    <h2>Limitaciones</h2>
+                    <ul>
+                        <li>Puede no converger si la matriz no es diagonalmente dominante o simétrica positiva definida.</li>
+                        <li>Convergencia más lenta que otros métodos, como el de Gauss-Seidel.</li>
+                    </ul>
+                
+                    <h2>Aplicaciones</h2>
+                    <p>El método de Jacobi se usa en simulaciones numéricas, análisis de estructuras y problemas de física computacional que involucran sistemas de ecuaciones grandes y dispersos.</p>
                 </div>
                 <button id="regresar-j" class="boton">REGRESAR</button>
                 <button id="siguiente-j" class="boton">SIGUIENTE</button>
@@ -464,13 +588,42 @@
         </section>
         <section id="gauss-seidel-1">
             <div class="metodos-1">
-                    <h2>GAUSS SEIDEL</h2>
-                    <div align="justify">
-                        <p>Explicación: </p>
-                        <br><br><br><br><br><br><br><br><br><br><br><br>
-                    </div>
-                    <button id="regresar-g-s" class="boton">REGRESAR</button>
-                    <button id="siguiente-g-s" class="boton">SIGUIENTE</button>
+                <h1>Método de Gauss-Seidel</h1>
+                <div align="justify">
+                    <p>El método de Gauss-Seidel es un algoritmo iterativo para resolver sistemas de ecuaciones lineales de la forma \( Ax = b \). Es una variante del método de Jacobi que utiliza los valores actualizados de \( x \) en cada iteración para acelerar la convergencia.</p>
+                
+                    <h2>Fórmula</h2>
+                    <p>La fórmula general para actualizar \( x_i^{(k+1)} \) es:</p>
+                    <p>
+                        \[
+                        x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j < i} a_{ij} x_j^{(k+1)} - \sum_{j > i} a_{ij} x_j^{(k)} \right)
+                        \]
+                    </p>
+                
+                    <h2>Pasos</h2>
+                    <ol>
+                        <li>Inicializar un vector \( x^{(0)} \) con valores aproximados.</li>
+                        <li>Actualizar \( x_i \) en cada iteración usando los valores ya calculados en la misma iteración para \( j < i \).</li>
+                        <li>Repetir hasta que la diferencia entre iteraciones consecutivas sea menor que un valor de tolerancia predefinido.</li>
+                    </ol>
+                
+                    <h2>Ventajas</h2>
+                    <ul>
+                        <li>Convergencia más rápida que el método de Jacobi en la mayoría de los casos.</li>
+                        <li>Requiere menos memoria, ya que los valores de \( x \) se actualizan en su lugar.</li>
+                    </ul>
+                
+                    <h2>Limitaciones</h2>
+                    <ul>
+                        <li>Puede no converger si la matriz no es diagonalmente dominante o simétrica positiva definida.</li>
+                        <li>No es tan adecuado para sistemas donde las matrices son muy grandes y dispersas.</li>
+                    </ul>
+                    
+                    <h2>Aplicaciones</h2>
+                    <p>El método de Gauss-Seidel se utiliza en simulaciones numéricas, ingeniería estructural y análisis de circuitos eléctricos, donde se necesitan aproximaciones rápidas de soluciones de sistemas lineales.</p>
+                </div>
+                <button id="regresar-g-s" class="boton">REGRESAR</button>
+                <button id="siguiente-g-s" class="boton">SIGUIENTE</button>
             </div>
         </section>
         <section id="gauss-seidel-2">
@@ -576,11 +729,11 @@
                         <tr>
                             <td align="center">
                                 <label for="doolittle" class="radio">DOOLITTLE</label>
-                                <input type="radio" id="doolittle" name="enl">
+                                <input type="radio" id="doolittle" name="enl" class="radio">
                             </td>
                             <td align="center">
                                 <label for="cholesky" class="radio">CHOLESKY</label>
-                                <input type="radio" id="cholesky" name="enl">
+                                <input type="radio" id="cholesky" name="enl" class="radio">
                             </td>
                         </tr>
                     </table>     
@@ -595,11 +748,37 @@
             </div>                    
         </section>
         <section id="doolittle-1">
-            <div class="metodos-1">
-                <h2>DOOLITTLE</h2>
+            <div class="metodos-1" align="center">
+                <h1>Método de Doolittle</h1>
                 <div align="justify">
-                    <p>Explicación: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>El método de Doolittle es un procedimiento utilizado para resolver sistemas de ecuaciones lineales mediante la factorización de una matriz \( A \) en el producto de dos matrices: una matriz triangular inferior \( L \) y una matriz triangular superior \( U \), es decir, \( A = LU \).</p>
+                
+                    <h2>Procedimiento</h2>
+                    <ol>
+                        <li>Reescribir la matriz \( A \) como el producto \( L \cdot U \), donde \( L \) tiene unos en la diagonal principal.</li>
+                        <li>Calcular las entradas de \( L \) y \( U \) de forma iterativa utilizando sustituciones hacia adelante y hacia atrás.</li>
+                        <li>Resolver el sistema \( Ax = b \) en dos pasos:
+                            <ul>
+                                <li>Primero, resolver \( Ly = b \) usando sustitución hacia adelante.</li>
+                                <li>Luego, resolver \( Ux = y \) usando sustitución hacia atrás.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                
+                    <h2>Ventajas</h2>
+                    <ul>
+                        <li>Permite resolver múltiples sistemas con la misma matriz \( A \) cambiando solo el vector \( b \).</li>
+                        <li>Reduce el costo computacional al dividir el problema en pasos más simples.</li>
+                    </ul>
+                
+                    <h2>Limitaciones</h2>
+                    <ul>
+                        <li>No siempre es aplicable si la matriz \( A \) es singular o no cuadrada.</li>
+                        <li>Pierde precisión en matrices con números muy pequeños o muy grandes debido a errores de redondeo.</li>
+                    </ul>
+                
+                    <h2>Aplicaciones</h2>
+                    <p>Se usa en álgebra lineal numérica para resolver sistemas de ecuaciones, calcular inversas de matrices y determinar determinantes de matrices grandes.</p>
                 </div>
                 <div align="center">
                     <button id="regresar-c" class="boton">REGRESAR</button>
@@ -648,10 +827,40 @@
         </section>
         <section id="cholesky-1">
             <div class="metodos-1" align="center">
-                <h2>CHOLESKY</h2>
+                <h1>Método de Cholesky</h1>
                 <div align="justify">
-                    <p>Explicación: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>El método de Cholesky es una técnica de factorización utilizada para resolver sistemas de ecuaciones lineales. Descompone una matriz simétrica y definida positiva \( A \) en el producto de una matriz triangular inferior \( L \) y su traspuesta \( L^T \), es decir, \( A = LL^T \).</p>                
+                    <h2>Procedimiento</h2>
+                    <ol>
+                        <li>Comprobar que la matriz \( A \) es simétrica y definida positiva.</li>
+                        <li>Calcular los elementos de \( L \) utilizando la fórmula:
+                            \[
+                            l_{ii} = \sqrt{a_{ii} - \sum_{k=1}^{i-1} l_{ik}^2}
+                            \]
+                            y para \( i \neq j \):
+                            \[
+                            l_{ij} = \frac{1}{l_{jj}} \left( a_{ij} - \sum_{k=1}^{j-1} l_{ik} l_{jk} \right).
+                            \]
+                        </li>
+                        <li>Resolver el sistema \( Ax = b \) mediante:
+                            <ul>
+                                <li>Sustitución hacia adelante para \( Ly = b \).</li>
+                                <li>Sustitución hacia atrás para \( L^T x = y \).</li>
+                            </ul>
+                        </li>
+                    </ol>                
+                    <h2>Ventajas</h2>
+                    <ul>
+                        <li>Es más eficiente que otros métodos como Doolittle para matrices simétricas y definidas positivas.</li>
+                        <li>Reduce el costo computacional al trabajar con la mitad de los elementos de la matriz.</li>
+                    </ul>                
+                    <h2>Limitaciones</h2>
+                    <ul>
+                        <li>Solo es aplicable a matrices simétricas y definidas positivas.</li>
+                        <li>Puede ser inexacto si la matriz no cumple estas propiedades.</li>
+                    </ul>                
+                    <h2>Aplicaciones</h2>
+                    <p>El método de Cholesky se utiliza en optimización, álgebra lineal numérica y análisis estadístico, especialmente en problemas que involucran matrices grandes y simétricas, como las covarianzas.</p>
                 </div>
                 <button id="regresar-csky" class="boton">REGRESAR</button>
                 <button id="siguiente-csky" class="boton">SIGUIENTE</button>
@@ -763,11 +972,11 @@
                         <tr>
                             <td align="center">
                                 <label for="potencia" class="radio">POTENCIA</label>
-                                <input type="radio" id="potencia" name="enl">  
+                                <input type="radio" id="potencia" name="enl" class="radio">  
                             </td>
                             <td align="center">
                                 <label for="potencia-inversa" class="radio">POTENCIA-INVERSA</label>
-                                <input type="radio" id="potencia-inversa" name="enl">
+                                <input type="radio" id="potencia-inversa" name="enl" class="radio">
                             </td>
                         </tr>
                     </table>                                                                                          
@@ -782,10 +991,36 @@
         </section>
         <section id="potencia-1">
             <div class="metodos-1" align="center">
-                <h2>POTENCIA</h2>
+                <h3>Método de la Potencia</h3>
                 <div align="justify">
-                    <p>Explicación: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>
+                    El <strong>método de la potencia</strong> es un algoritmo iterativo utilizado para calcular el 
+                    <em>autovalor dominante</em> y su correspondiente <em>autovector</em> de una matriz cuadrada \( A \).
+                    </p>
+                    <h4>Descripción</h4>
+                    <p>
+                    Dado un vector inicial no nulo \( x^{(0)} \), el método genera una sucesión de vectores mediante la iteración:
+                    </p>
+                    <p style="text-align: center;">
+                    \( x^{(k+1)} = A x^{(k)} \),  \( x^{(k+1)} \gets \frac{x^{(k+1)}}{\|x^{(k+1)}\|} \),
+                    </p>
+                    <p>
+                    donde \( \|x\| \) es una norma (usualmente, la norma euclidiana). Esta normalización evita el crecimiento ilimitado de \( x^{(k)} \).
+                    </p>
+                    <h4>Convergencia</h4>
+                    <p>
+                    Si \( A \) tiene un autovalor dominante \( \lambda_1 \) (es decir, \( |\lambda_1| > |\lambda_i| \) para todos los \( i \neq 1 \)), el método converge a un vector paralelo al autovector asociado a \( \lambda_1 \).
+                    </p>
+                    <h4>Ventajas</h4>
+                    <ul>
+                    <li>Simplicidad de implementación.</li>
+                    <li>Computacionalmente eficiente para matrices grandes y dispersas.</li>
+                    </ul>
+                    <h4>Limitaciones</h4>
+                    <ul>
+                    <li>No converge si \( A \) no tiene un autovalor dominante.</li>
+                    <li>Puede ser sensible al vector inicial \( x^{(0)} \).</li>
+                    </ul>
                 </div>
                 <button id="regresar-p" class="boton">REGRESAR</button>
                 <button id="siguiente-p" class="boton">SIGUIENTE</button>
@@ -830,10 +1065,47 @@
         </section>
         <section id="potencia-inversa-1">
             <div class="metodos-1" align="center">
-                <h2>POTENCIA-INVERSA</h2>
+                <h1>Método de la Potencia Inversa</h1>
                 <div align="justify">
-                    <p>Explicación: </p>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <p>
+                    El <strong>método de la potencia inversa</strong> es una variante del método de la potencia, utilizada para encontrar el 
+                    <em>autovalor más pequeño en magnitud</em> de una matriz cuadrada \( A \) y su correspondiente <em>autovector</em>.
+                    </p>
+                    
+                    <h2>Descripción</h2>
+                    <p>
+                    Dado un vector inicial no nulo \( x^{(0)} \), el método genera una sucesión de vectores resolviendo iterativamente un sistema lineal:
+                    </p>
+                    <p style="text-align: center;">
+                    \( A y^{(k)} = x^{(k)}, \quad x^{(k+1)} = \frac{y^{(k)}}{\|y^{(k)}\|} \),
+                    </p>
+                    <p>
+                    donde \( \|x\| \) es una norma (usualmente, la norma euclidiana). Esto equivale a aplicar el método de la potencia a la matriz \( A^{-1} \), destacando los autovalores más cercanos a cero.
+                    </p>
+                    
+                    <h2>Convergencia</h2>
+                    <p>
+                    Si \( \mu_1 \) es el autovalor de \( A \) más pequeño en magnitud (es decir, \( |\mu_1| < |\mu_i| \) para \( i \neq 1 \)), el método converge a un vector paralelo al autovector asociado a \( \mu_1 \).
+                    </p>
+                    
+                    <h2>Ventajas</h2>
+                    <ul>
+                    <li>Permite calcular el autovalor más pequeño en magnitud, útil para problemas específicos.</li>
+                    <li>Es efectivo para matrices grandes y dispersas.</li>
+                    </ul>
+                    
+                    <h2>Limitaciones</h2>
+                    <ul>
+                    <li>Requiere resolver un sistema lineal en cada iteración, lo que puede ser costoso computacionalmente.</li>
+                    <li>Sensible a la elección del vector inicial \( x^{(0)} \).</li>
+                    <li>No converge si \( A \) es singular.</li>
+                    </ul>
+                    
+                    <h2>Notas Adicionales</h2>
+                    <p>
+                    El método puede combinarse con desplazamientos espectrales para calcular autovalores cercanos a un valor dado \( \sigma \) 
+                    al aplicar el método de potencia inversa a \( (A - \sigma I)^{-1} \).
+                    </p>
                 </div>
                 <button id="regresar-p-i" class="boton">REGRESAR</button>
                 <button id="siguiente-p-i" class="boton">SIGUIENTE</button>
@@ -880,10 +1152,29 @@
     <!--SALIDA!!!!!-->
     <section id="salida">
         <div class="salida" align="center">
-            <h1>¡¡¡Gracias por utilizar el programa!!!</h1>
+            <h1>¡¡¡Gracias por utilizar el programa!!!</h1>            
             <img src="despedida.png" alt="">
+            <div align="justify">
+                <h2>Referencias: </h2>
+                <ol>
+                    <li>
+                        <p><strong>Burden, R. L., & Faires, J. D. (2011). </strong><em>Numerical Analysis</em> (9th ed.). Brooks/Cole, Cengage Learning.</p>
+                    </li>
+                    <li>
+                        <p><strong>Chapra, S. C., & Canale, R. P. (2010). </strong><em>Numerical Methods for Engineers</em> (6th ed.). McGraw-Hill Education.</p>
+                    </li>
+                    <li>
+                        <p><strong>Kincaid, D., & Cheney, W. (2002). </strong><em>Numerical Analysis: Mathematics of Scientific Computing</em> (3rd ed.). Brooks/Cole.</p>
+                    </li>
+                </ol>
+            </div>            
         </div>
     </section>
-    
+    <audio id="sonido-salida">
+        <source type="audio/wav" src="./99636__tomlija__small-crowd-yelling-yeah.wav">
+    </audio>
+    <audio id="audio-2">
+        <source type="audio/wav" src="./340362__deleted_user_5205523__medium-sized-indoor-crowd-clapping-outro.wav">
+    </audio>
 </body>
 </html>

@@ -24,7 +24,6 @@ body
 .introduccion
 {
     width: 700px;
-    height: 545px;
     background-color: beige;
     text-align: justify;
     margin: 0 auto;
@@ -75,7 +74,6 @@ body
     font-size: 14px;
     text-align: justify;
     width: 650px;
-    height: 800px;
     margin: 0 auto;
     padding: 20px;
     border-color: black;
@@ -149,9 +147,10 @@ body
     border-radius: 10px;
     background-color: aliceblue;
 }
-.tabla-jacobi{
+.tabla-metodos{
     border: 1px solid white;
     border-collapse: collapse;
+    text-align: center;
 }
 .LU{
     display: flex;
@@ -172,9 +171,9 @@ body
 }
 .salida
 {
-    background-color: rgb(60, 156, 60);
+    color: #526E48;
+    background-color: #9EDF85;
     width: 700px;
-    height: 300px;
     padding: 30px;
     border-radius: 30px;
 }
