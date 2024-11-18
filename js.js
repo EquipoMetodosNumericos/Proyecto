@@ -8,6 +8,16 @@ function iniciarPrograma()
     let fechaActual = `${dia}/${mes}/${anio}`;
     let inputFecha = document.getElementById('fecha');
     inputFecha.innerHTML = fechaActual;
+    //Descarga de archivos
+    document.getElementById('btnJs').addEventListener('click',function(){
+        window.open('./jspdf.pdf','_blank');
+    });
+    document.getElementById('btnHTML').addEventListener('click',function(){
+        window.open('./htmlpdf.pdf','_blank');
+    });
+    document.getElementById('btnCSS').addEventListener('click',function(){
+        window.open('./csspdf.pdf','_blank');
+    });
     //VISIBILIDAD DE SECCIONES    
     document.getElementById('section-resolver-gj').style.display='none';
     document.getElementById('section-resolver-j').style.display='none';           
@@ -1016,7 +1026,7 @@ function resolverJ(){
         let auxSol = Array(n).fill(0); 
         let convergencia;
         let table = `<h2>Tabla Jacobí</h2><br><table class="tabla-metodos" border="1"><thead><th>n</th>`;
-        let tablaJacobi = document.getElementById('tabla-metodos');
+        let tablaJacobi = document.getElementById('tabla-jacobi');
         let iter=0;
         //Encabezados
         for(i=0;i<n;i++){
