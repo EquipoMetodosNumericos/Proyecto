@@ -875,7 +875,7 @@ function crearMatriz(ord){
     let cen=true;
     if(n<1||n>10){
         cen=false;
-        alert('El valor de la matriz es inválido, Gilberto')
+        alert('El valor de la matriz es inválido')
     }
     if(cen){
         for (let i = 0; i < n; i++) {
@@ -926,7 +926,7 @@ function crearMatrizA(ord){
     let cen=true;
     if(n<1||n>10){
         cen=false;
-        alert('El valor de la matriz es inválido, Gilberto')
+        alert('El valor de la matriz es inválido')
     }
     let table = `\\(A=\\)<table>`;
     if (cen) {
@@ -954,7 +954,7 @@ function resolverGJ(){
         for (let j = 0; j < n + 1; j++) {
             let valor = document.getElementById(`matriz-${i}-${j}-gj`).value;
                 if (valor === "") {
-                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                alert('El valor de los coeficientes no puede estar vacío');
                 cen = false; 
                 break; 
             }            
@@ -964,7 +964,7 @@ function resolverGJ(){
     for (let i = 0; i < n; i++) {
         let pivote = matriz[i][i];
         if (pivote === 0) {
-            alert("El elemento pivote es cero, no se puede emplear el método, Gilberto.");
+            alert("El elemento pivote es cero, no se puede emplear el método");
             return;
         }
         for (let j = 0; j < n + 1; j++) {
@@ -1001,7 +1001,7 @@ function resolverJ(){
             let valor = document.getElementById(`matriz-${i}-${j}-j`).value;            
             // Verificar si el valor está vacío o nulo
             if (valor === "") {
-                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                alert('El valor de los coeficientes no puede estar vacío');
                 cen = false; 
                 break; 
             }            
@@ -1014,7 +1014,7 @@ function resolverJ(){
         for (let j = 0; j < n-1 + 1; j++) {  
             if(i!=j){
                 if (matriz[i][i]<matriz[i][j]) {
-                    alert('La diagonal no es dominante, Gilberto');
+                    alert('La diagonal no es dominante');
                     cen = false; 
                     break; 
                 }    
@@ -1085,7 +1085,7 @@ function resolverGS(){
             let valor = document.getElementById(`matriz-${i}-${j}-gs`).value;            
             // Verificar si el valor está vacío o nulo
             if (valor === "") {
-                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                alert('El valor de los coeficientes no puede estar vacío');
                 cen = false; // Marcar la matriz como no válida
                 break; // Salir del bucle interior
             }            
@@ -1103,7 +1103,7 @@ function resolverGS(){
             if(i!=j){
                 sum += matriz[i][j];
                 if(vdiag<sum){
-                    alert('La matriz no es estrictamente dominante, Gilberto');
+                    alert('La matriz no es estrictamente dominante');
                     break;
                     cen=false;
                 }
@@ -1171,7 +1171,7 @@ function resolverD(){
             let value = parseInt(document.getElementById(`matriz-${i}-${j}-d`).value);
             if(value==null){
                 cen = false;
-                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                alert('El valor de los coeficientes no puede estar vacío');
                 break;
             }
             else{
@@ -1313,7 +1313,7 @@ function resolverC(){
             let value = parseInt(document.getElementById(`matriz-${i}-${j}-c`).value);
             if(value==null){
                 cen = false;
-                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                alert('El valor de los coeficientes no puede estar vacío');
                 break;
             }
             else{
@@ -1511,7 +1511,7 @@ function resolverP(){
         matriz[i]=[];
         let valorX = parseFloat(document.getElementById(`vector-${i}-p`).value);
         if(valorX == null){
-            alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+            alert('El valor de los coeficientes no puede estar vacío');
             cen = false;
             break;
         }
@@ -1520,7 +1520,7 @@ function resolverP(){
             let value = parseFloat(document.getElementById(`matriz-${i}-${j}-p`).value);
             if(value == null){
                 cen = false;
-                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                alert('El valor de los coeficientes no puede estar vacío');
                 break;
             }
             else{
@@ -1594,7 +1594,7 @@ function resolverPI() {
         matriz[i] = [];
         let valorX = parseFloat(document.getElementById(`vector-${i}-p-i`).value);
         if (isNaN(valorX)) {
-            alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+            alert('El valor de los coeficientes no puede estar vacío');
             cen = false;
             break;
         } else {
@@ -1603,7 +1603,7 @@ function resolverPI() {
         for (let j = 0; j < n; j++) {
             let value = parseFloat(document.getElementById(`matriz-${i}-${j}-p-i`).value);
             if (isNaN(value)) {
-                alert('El valor de los coeficientes no puede estar vacío, Gilberto');
+                alert('El valor de los coeficientes no puede estar vacío');
                 cen = false;
                 break;
             } else {
